@@ -32,7 +32,9 @@ let spd = document.querySelector('#spd')
 let def = document.querySelector('#def')
 let crit = document.querySelector('#crit')
 
-console.log(maxHP, typeof maxHP);
+let classChosen
+let boardMessage
+let battleCount = 0
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -58,11 +60,19 @@ sorSelect.addEventListener('click', selectSor)
 init()
 
 function init() {
-  battleBoardHead.textContent = 'Choose a Class'
+  classChosen = false
+  for (stat in statObj) {
+    statObj[stat] = '?'
+  }
   render()
 }
 
 function render() {
+  renderStats()
+  renderMessage()
+}
+
+function renderStats() {
   maxHP.textContent = statObj.maxHP
   atk.textContent = statObj.atk
   spd.textContent = statObj.spd
@@ -70,7 +80,18 @@ function render() {
   crit.textContent = statObj.crit
 }
 
+function renderMessage() {
+  if (classChosen === false) {
+    battleBoardHead.textContent = 'Choose a Class'
+  } else if (battleCount === 5) {
+    battleBoardHead.textContent = `FINAL BATTLE`
+  } else {
+    battleBoardHead.textContent = `Round ${battleCount}/5`
+  }
+}
+
 function selectBarb () {
+  classChosen = true
   for (stat in statObj) {
     statObj[stat] = barbarian[stat]
   }
@@ -79,6 +100,7 @@ function selectBarb () {
 }
 
 function selectRog () {
+  classChosen = true
   for (stat in statObj) {
     statObj[stat] = rogue[stat]
   }
@@ -87,6 +109,7 @@ function selectRog () {
 }
 
 function selectSor () {
+  classChosen = true
   for (stat in statObj) {
     statObj[stat] = sorceress[stat]
   }
