@@ -1,3 +1,63 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  font-family: 'Kalam', cursive;
+  font-family: 'Shadows Into Light', cursive;
+  margin: 0;
+}
+
 body {
-  background-color: red;
+  background-color: rgb(84, 80, 113);
+  padding: 56px;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 20px;
+}
+
+.class {
+  padding: 16px;
+  border: 3px solid black;
+  cursor: pointer;
+}
+
+#board {
+  justify-content: center;
+  padding: 16px;
+
+}
+
+#board > div {
+  border: 2px solid black;
+  text-align: center;
+}
+
+#stat-list,
+#item-list {
+  margin: 5px;
+  border-top: 1px solid black;
+}
+
+#battle-hud {
+  width: 900px;
+}
+
+#stats,
+#items {
+  width: 216px;
+  align-self: center;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
 }
