@@ -112,7 +112,7 @@ function renderTurnMessage() {
   }
 }
 
-function handleClick () {
+function handleAtkClick () {
   //apply damage
   //check for winner
   //if no winner, switch turn
@@ -120,6 +120,12 @@ function handleClick () {
     //announce winner
     //turn = 0 and 
     //return prize options
+}
+
+function handlePrizeClick {
+  //boost applicable stats
+  //update inventory
+  //initFight
 }
 FUNCTION HANDLE CLICK 
 FUNCTION RENDER CHARACTERS
