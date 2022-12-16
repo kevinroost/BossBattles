@@ -165,49 +165,26 @@ function checkSpeed() {
 
 function selectChar(evt) {
   classChosen = true
-  if (evt.target.id == 'bar') {
-    for (stat in statObj) {
-      statObj[stat] = barbarian[stat]
-    }
-  } else if (evt.target.id == 'rog') {
-    for (stat in statObj) {
-      statObj[stat] = rogue[stat]
-    }
-  } else if (evt.target.id == 'sor') {
-    for (stat in statObj) {
-      statObj[stat] = sorceress[stat]
-    }
+  switch(evt.target.id) {
+    case 'bar':
+      for (stat in statObj) {
+        statObj[stat] = barbarian[stat]
+      }
+      break
+    case 'rog':
+      for (stat in statObj) {
+        statObj[stat] = rogue[stat]
+      }
+      break
+    case 'sor':
+      for (stat in statObj) {
+        statObj[stat] = sorceress[stat]
+      }
+      break
   }
   console.log(statObj);
   initFight()
 }
-
-// function selectBarb () {
-//   classChosen = true
-//   for (stat in statObj) {
-//     statObj[stat] = barbarian[stat]
-//   }
-//   console.log(statObj);
-//   initFight()
-// }
-
-// function selectRog () {
-//   classChosen = true
-//   for (stat in statObj) {
-//     statObj[stat] = rogue[stat]
-//   }
-//   console.log(statObj);
-//   initFight()
-// }
-
-// function selectSor () {
-//   classChosen = true
-//   for (stat in statObj) {
-//     statObj[stat] = sorceress[stat]
-//   }
-//   console.log(statObj);
-//   initFight()
-// }
 
 function pickUpItem () {
   updateStat(maxHP, 3)
