@@ -18,9 +18,9 @@ class Class {
   }
 }
 
-const barbarian = new Class(8, 4, 5, 5, 2)
-const rogue = new Class(3, 5, 7, 3, 6)
-const sorceress = new Class(3, 10, 3, 2, 5)
+const barbarian = new Class(80, 4, 5, 5, 2)
+const rogue = new Class(30, 5, 7, 3, 6)
+const sorceress = new Class(30, 10, 3, 2, 5)
 
 class Enemy {
   constructor (maxHP, atk, spd, def, crit) {
@@ -32,13 +32,13 @@ class Enemy {
   }
 }
 
-const enemy1 = new Enemy (4, 4, 4, 4, 4)
-const enemy2 = new Enemy (5, 5, 5, 5, 5)
-const enemy3 = new Enemy (6, 6, 6, 6, 6)
-const enemy4 = new Enemy (7, 7, 7, 7, 7)
-const enemy5 = new Enemy (8, 8, 8, 8, 8)
-
 const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
+const enemy1 = new Enemy (40, 4, 4, 4, 4)
+const enemy2 = new Enemy (50, 5, 5, 5, 5)
+const enemy3 = new Enemy (60, 6, 6, 6, 6)
+const enemy4 = new Enemy (70, 7, 7, 7, 7)
+const enemy5 = new Enemy (80, 8, 8, 8, 8)
+
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -86,20 +86,43 @@ function init() {
   render()
 }
 
-function fight() {
+function initFight() {
   findEnemy()
   battleCount = battleCount + 1
   console.log(enemy);
   checkSpeed()
   //take turns until either HP hits 0
   //anounce winner
-  return
 }
 
 function render() {
   renderStats()
   renderMessage()
+  renderTurnMessage()
+  if (classChosen) renderCharacters()
 }
+
+function renderTurnMessage() {
+  if (turn = -1) {
+    footer.textContent = `It's your turn!`
+  } else if (turn = 1) {
+    footer.textContent = `It's the monster's turn.`
+  } else {
+    footer.textContent = `Choose your prize!`
+  }
+}
+
+function handleClick () {
+  //apply damage
+  //check for winner
+  //if no winner, switch turn
+  //if winner, 
+    //announce winner
+    //turn = 0 and 
+    //return prize options
+}
+FUNCTION HANDLE CLICK 
+FUNCTION RENDER CHARACTERS
 
 function renderStats() {
   maxHP.textContent = statObj.maxHP
@@ -136,7 +159,7 @@ function selectBarb () {
   }
   console.log(statObj);
   render()
-  fight()
+  initFight()
 }
 
 function selectRog () {
@@ -146,7 +169,7 @@ function selectRog () {
   }
   console.log(statObj);
   render()
-  fight()
+  initFight()
 }
 
 function selectSor () {
@@ -156,7 +179,7 @@ function selectSor () {
   }
   console.log(statObj);
   render()
-  fight()
+  initFight()
 }
 
 function pickUpItem () {
