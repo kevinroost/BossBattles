@@ -1,11 +1,11 @@
 /*-------------------------------- Constants --------------------------------*/
 
 const statObj = {
-  maxHP: 0,
-  atk: 0,
-  spd: 0,
-  def: 0,
-  crit: 0,
+  maxHP: null,
+  atk: null,
+  spd: null,
+  def: null,
+  crit: null,
 }
 
 class Class {
@@ -32,13 +32,13 @@ class Enemy {
   }
 }
 
-const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
-const enemy1 = new Enemy (40, 4, 4, 4, 4)
-const enemy2 = new Enemy (50, 5, 5, 5, 5)
-const enemy3 = new Enemy (60, 6, 6, 6, 6)
-const enemy4 = new Enemy (70, 7, 7, 7, 7)
-const enemy5 = new Enemy (80, 8, 8, 8, 8)
+const enemy1 = new Enemy (40, 4, 4, 3, 1)
+const enemy2 = new Enemy (50, 5, 5, 4, 2)
+const enemy3 = new Enemy (60, 6, 6, 5, 3)
+const enemy4 = new Enemy (70, 7, 7, 6, 3)
+const enemy5 = new Enemy (80, 8, 8, 7, 4)
 
+const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -51,8 +51,8 @@ let crit = document.querySelector('#crit')
 
 let classChosen
 let boardMessage
-let battleCount = 1
-let turn
+let battleCount = 0
+let turn = null
 let enemy
 
 
@@ -63,6 +63,7 @@ const rogSelect = document.querySelector('#rog')
 const sorSelect = document.querySelector('#sor')
 const allClasses = document.querySelector('#classes')
 const battleBoardHead = document.querySelector('#board-header')
+const footer = document.querySelector('footer')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -86,15 +87,6 @@ function init() {
   render()
 }
 
-function initFight() {
-  findEnemy()
-  battleCount = battleCount + 1
-  console.log(enemy);
-  checkSpeed()
-  //take turns until either HP hits 0
-  //anounce winner
-}
-
 function render() {
   renderStats()
   renderMessage()
@@ -102,33 +94,42 @@ function render() {
   if (classChosen) renderCharacters()
 }
 
+function initFight() {
+  findEnemy()
+  battleCount = battleCount + 1
+  console.log(enemy);
+  checkSpeed()
+  render()
+}
+
 function renderTurnMessage() {
-  if (turn = -1) {
+  if (turn === -1) {
     footer.textContent = `It's your turn!`
-  } else if (turn = 1) {
+  } else if (turn === 1) {
     footer.textContent = `It's the monster's turn.`
-  } else {
+  } else if (turn === 0) {
     footer.textContent = `Choose your prize!`
-  }
+  } else if (turn === null) footer.textContent = null
 }
 
 function handleAtkClick () {
   //apply damage
   //check for winner
   //if no winner, switch turn
+  //repeat above until hp <= 
   //if winner, 
     //announce winner
     //turn = 0 and 
     //return prize options
 }
 
-function handlePrizeClick {
+function handlePrizeClick() {
   //boost applicable stats
   //update inventory
   //initFight
 }
-FUNCTION HANDLE CLICK 
-FUNCTION RENDER CHARACTERS
+// FUNCTION HANDLE CLICK 
+// FUNCTION RENDER CHARACTERS
 
 function renderStats() {
   maxHP.textContent = statObj.maxHP
@@ -149,13 +150,15 @@ function renderMessage() {
 }
 
 function findEnemy() {
-  enemy = enemies[battleCount - 1]
+  enemy = enemies[battleCount]
 }
 
 function checkSpeed() {
   if (statObj.spd >= enemy.spd) {
     turn = -1
-  } else turn = 1
+  } else if (statObj.spd < enemy.spd) {
+    turn = 1
+  } 
 }
 
 function selectBarb () {
@@ -164,7 +167,6 @@ function selectBarb () {
     statObj[stat] = barbarian[stat]
   }
   console.log(statObj);
-  render()
   initFight()
 }
 
@@ -174,7 +176,6 @@ function selectRog () {
     statObj[stat] = rogue[stat]
   }
   console.log(statObj);
-  render()
   initFight()
 }
 
@@ -184,7 +185,6 @@ function selectSor () {
     statObj[stat] = sorceress[stat]
   }
   console.log(statObj);
-  render()
   initFight()
 }
 
