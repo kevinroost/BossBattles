@@ -69,9 +69,11 @@ const footer = document.querySelector('footer')
 /*----------------------------- Event Listeners -----------------------------*/
 
 
-barSelect.addEventListener('click', selectBarb)
-rogSelect.addEventListener('click', selectRog)
-sorSelect.addEventListener('click', selectSor)
+// barSelect.addEventListener('click', selectBarb)
+// rogSelect.addEventListener('click', selectRog)
+// sorSelect.addEventListener('click', selectSor)
+
+allClasses.addEventListener('click', selectChar)
 
 
 
@@ -161,32 +163,51 @@ function checkSpeed() {
   } 
 }
 
-function selectBarb () {
+function selectChar(evt) {
   classChosen = true
-  for (stat in statObj) {
-    statObj[stat] = barbarian[stat]
+  if (evt.target.id == 'bar') {
+    for (stat in statObj) {
+      statObj[stat] = barbarian[stat]
+    }
+  } else if (evt.target.id == 'rog') {
+    for (stat in statObj) {
+      statObj[stat] = rogue[stat]
+    }
+  } else if (evt.target.id == 'sor') {
+    for (stat in statObj) {
+      statObj[stat] = sorceress[stat]
+    }
   }
   console.log(statObj);
   initFight()
 }
 
-function selectRog () {
-  classChosen = true
-  for (stat in statObj) {
-    statObj[stat] = rogue[stat]
-  }
-  console.log(statObj);
-  initFight()
-}
+// function selectBarb () {
+//   classChosen = true
+//   for (stat in statObj) {
+//     statObj[stat] = barbarian[stat]
+//   }
+//   console.log(statObj);
+//   initFight()
+// }
 
-function selectSor () {
-  classChosen = true
-  for (stat in statObj) {
-    statObj[stat] = sorceress[stat]
-  }
-  console.log(statObj);
-  initFight()
-}
+// function selectRog () {
+//   classChosen = true
+//   for (stat in statObj) {
+//     statObj[stat] = rogue[stat]
+//   }
+//   console.log(statObj);
+//   initFight()
+// }
+
+// function selectSor () {
+//   classChosen = true
+//   for (stat in statObj) {
+//     statObj[stat] = sorceress[stat]
+//   }
+//   console.log(statObj);
+//   initFight()
+// }
 
 function pickUpItem () {
   updateStat(maxHP, 3)
