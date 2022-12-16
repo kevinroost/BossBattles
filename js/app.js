@@ -1,5 +1,13 @@
 /*-------------------------------- Constants --------------------------------*/
 
+const statObj = {
+  maxHP: 0,
+  atk: 0,
+  spd: 0,
+  def: 0,
+  crit: 0,
+}
+
 class Class {
   constructor (maxHP, atk, spd, def, crit) {
     this.maxHP = maxHP
@@ -15,6 +23,7 @@ const rogue = new Class(3, 5, 7, 3, 6)
 const sorceress = new Class(3, 10, 3, 2, 5)
 
 
+
 /*---------------------------- Variables (state) ----------------------------*/
 
 let maxHP = document.querySelector('#max-hp')
@@ -23,7 +32,7 @@ let spd = document.querySelector('#spd')
 let def = document.querySelector('#def')
 let crit = document.querySelector('#crit')
 
-
+console.log(maxHP, typeof maxHP);
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -31,11 +40,12 @@ let crit = document.querySelector('#crit')
 const barSelect = document.querySelector('#bar')
 const rogSelect = document.querySelector('#rog')
 const sorSelect = document.querySelector('#sor')
-
-
+const allClasses = document.querySelector('#classes')
+const battleBoardHead = document.querySelector('#board-header')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
+
 
 barSelect.addEventListener('click', selectBarb)
 rogSelect.addEventListener('click', selectRog)
@@ -45,31 +55,49 @@ sorSelect.addEventListener('click', selectSor)
 
 /*-------------------------------- Functions --------------------------------*/
 
+init()
+
+function init() {
+  battleBoardHead.textContent = 'Choose a Class'
+  render()
+}
+
+function render() {
+  maxHP.textContent = statObj.maxHP
+  atk.textContent = statObj.atk
+  spd.textContent = statObj.spd
+  def.textContent = statObj.def
+  crit.textContent = statObj.crit
+}
+
 function selectBarb () {
-  maxHP.textContent = barbarian.maxHP
-  atk.textContent = barbarian.atk
-  spd.textContent = barbarian.spd
-  def.textContent = barbarian.def
-  crit.textContent = barbarian.crit
+  for (stat in statObj) {
+    statObj[stat] = barbarian[stat]
+  }
+  console.log(statObj);
+  render()
 }
 
 function selectRog () {
-  maxHP.textContent = rogue.maxHP
-  atk.textContent = rogue.atk
-  spd.textContent = rogue.spd
-  def.textContent = rogue.def
-  crit.textContent = rogue.crit
+  for (stat in statObj) {
+    statObj[stat] = rogue[stat]
+  }
+  console.log(statObj);
+  render()
 }
 
 function selectSor () {
-  maxHP.textContent = sorceress.maxHP
-  atk.textContent = sorceress.atk
-  spd.textContent = sorceress.spd
-  def.textContent = sorceress.def
-  crit.textContent = sorceress.crit
+  for (stat in statObj) {
+    statObj[stat] = sorceress[stat]
+  }
+  console.log(statObj);
+  render()
 }
 
 function pickUpItem () {
-  maxHP.textContent ++
+  updateStat(maxHP, 3)
 }
 
+function updateStat(stat, inc) {
+  stat.textContent = parseInt(stat.textContent) + inc
+}
