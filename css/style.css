@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background-color: slategray;
+  background-color: lightblue;
   padding: 56px;
 }
 
@@ -33,7 +33,7 @@ section {
 #board {
   justify-content: center;
   padding: 16px;
-
+  height: 500px;
 }
 
 #board > div {
@@ -47,8 +47,24 @@ section {
   border-top: 1px solid black;
 }
 
+#stat-list {
+  padding: 8px;
+}
+
 #battle-hud {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 900px;
+}
+
+#battle-hud > div {
+  display: flex;
+  height: 100%;
+}
+
+#board-header {
+  font-size: 64px;
 }
 
 #stats,
@@ -60,4 +76,19 @@ section {
 .stat {
   display: flex;
   justify-content: space-between;
+}
+
+.character {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid black;
+  width: 50%;
+  justify-content: center;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  height: 64px;
+  justify-content: center;
 }

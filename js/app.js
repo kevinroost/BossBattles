@@ -22,6 +22,23 @@ const barbarian = new Class(8, 4, 5, 5, 2)
 const rogue = new Class(3, 5, 7, 3, 6)
 const sorceress = new Class(3, 10, 3, 2, 5)
 
+class Enemy {
+  constructor (maxHP, atk, spd, def, crit) {
+    this.maxHP = maxHP
+    this.atk = atk
+    this.spd = spd
+    this.def = def
+    this.crit = crit
+  }
+}
+
+const enemy1 = new Enemy (4, 4, 4, 4, 4)
+const enemy2 = new Enemy (5, 5, 5, 5, 5)
+const enemy3 = new Enemy (6, 6, 6, 6, 6)
+const enemy4 = new Enemy (7, 7, 7, 7, 7)
+const enemy5 = new Enemy (8, 8, 8, 8, 8)
+
+const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -34,7 +51,9 @@ let crit = document.querySelector('#crit')
 
 let classChosen
 let boardMessage
-let battleCount = 0
+let battleCount = 1
+let turn
+let enemy
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -67,6 +86,16 @@ function init() {
   render()
 }
 
+function fight() {
+  findEnemy()
+  battleCount = battleCount + 1
+  console.log(enemy);
+  checkSpeed()
+  //take turns until either HP hits 0
+  //anounce winner
+  return
+}
+
 function render() {
   renderStats()
   renderMessage()
@@ -90,6 +119,16 @@ function renderMessage() {
   }
 }
 
+function findEnemy() {
+  enemy = enemies[battleCount - 1]
+}
+
+function checkSpeed() {
+  if (statObj.spd >= enemy.spd) {
+    turn = -1
+  } else turn = 1
+}
+
 function selectBarb () {
   classChosen = true
   for (stat in statObj) {
@@ -97,6 +136,7 @@ function selectBarb () {
   }
   console.log(statObj);
   render()
+  fight()
 }
 
 function selectRog () {
@@ -106,6 +146,7 @@ function selectRog () {
   }
   console.log(statObj);
   render()
+  fight()
 }
 
 function selectSor () {
@@ -115,6 +156,7 @@ function selectSor () {
   }
   console.log(statObj);
   render()
+  fight()
 }
 
 function pickUpItem () {
