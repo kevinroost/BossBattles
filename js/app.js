@@ -80,7 +80,7 @@ const prizes = document.querySelector('#prizes')
 // sorSelect.addEventListener('click', selectChar)
 
 allClasses.addEventListener('click', selectChar)
-
+prizes.addEventListener('click', handlePrizeClick)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -125,24 +125,34 @@ function renderTurnMessage() {
       break
     case null:
       footer.textContent = null
-    break
+      break
     }
-}
-
-function handleAtkClick () {
-  playerTurn()
-  if (winner) {
-    renderPrizes()
-    console.log(prizes);
-    return
   }
-  setTimeout(() => enemyTurn(), 0)
-  //repeat above until hp <= 
-  //if winner, 
+  
+  function handleAtkClick () {
+    playerTurn()
+    if (winner) {
+      renderPrizes()
+      console.log(prizes);
+      return
+    }
+    setTimeout(() => enemyTurn(), 0)
+    //repeat above until hp <= 
+    //if winner, 
     //announce winner
     //turn = 0 and 
     //return prize options
-}
+  }
+  
+  function handlePrizeClick() {
+    winner = false
+    initFight()
+    prizes.innerHTML = null
+    document.getElementById('player-hud').style.borderRight = '1px solid black'
+    //boost applicable stats
+    //update inventory
+    //initFight
+  }
 
 function playerTurn() {
   enemyCurrentHP -= statObj.atk
@@ -169,12 +179,6 @@ function enemyTurn() {
   render()
 }
 
-function handlePrizeClick() {
-  //boost applicable stats
-  //update inventory
-  //initFight
-}
-// FUNCTION HANDLE CLICK 
 
 function renderCharacters () {
   document.getElementById('player-hud').innerHTML = 
