@@ -58,9 +58,6 @@ let enemy
 
 /*------------------------ Cached Element References ------------------------*/
 
-const barSelect = document.querySelector('#bar')
-const rogSelect = document.querySelector('#rog')
-const sorSelect = document.querySelector('#sor')
 const allClasses = document.querySelector('#classes')
 const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
@@ -93,7 +90,7 @@ function render() {
   renderStats()
   renderMessage()
   renderTurnMessage()
-  if (classChosen) renderCharacters()
+  // if (classChosen) renderCharacters()
 }
 
 function initFight() {
@@ -185,7 +182,17 @@ function selectChar(evt) {
   }
   allClasses.removeEventListener('click', selectChar)
   console.log(statObj);
+  disableClassButtons()
   initFight()
+}
+
+function disableClassButtons() {
+  allClasses.style.color = 'gray'
+  for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
+    console.log(document.getElementsByClassName("class")[i]);
+    document.getElementsByClassName("class")[i].style.border = '3px solid gray'
+    document.getElementsByClassName("class")[i].style.cursor = 'default'
+  }
 }
 
 function pickUpItem () {
