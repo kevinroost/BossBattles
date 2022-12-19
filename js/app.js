@@ -136,7 +136,7 @@ function renderTurnMessage() {
       console.log(prizes);
       return
     }
-    setTimeout(() => enemyTurn(), 0)
+    setTimeout(() => enemyTurn(), 1000)
     //repeat above until hp <= 
     //if winner, 
     //announce winner
