@@ -42,6 +42,8 @@ const enemy5 = new Enemy ('enemy5', 80, 8, 8, 7, 4)
 const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
 
+
+
 /*---------------------------- Variables (state) ----------------------------*/
 
 let maxHP = document.querySelector('#max-hp')
@@ -59,6 +61,7 @@ let currentClass
 let playerCurrentHP
 let enemyCurrentHP
 let winner
+
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -127,9 +130,7 @@ function renderTurnMessage() {
 
 function handleAtkClick () {
   playerTurn()
-  render()
-  enemyTurn()
-  render()
+  setTimeout(() => enemyTurn(), 1000)
   //repeat above until hp <= 
   //if winner, 
     //announce winner
@@ -144,15 +145,17 @@ function playerTurn() {
     turn = 0
   }
   turn *= -1
+  render()
 }
 
 function enemyTurn() {
-  playerCurrentHP -= enemy.atk
+  playerCurrentHP -= statObj.atk
   if (playerCurrentHP <= 0) {
     winner = true
     turn = 0
   }
   turn *= -1
+  render()
 }
 
 function handlePrizeClick() {
@@ -189,8 +192,11 @@ function renderMessage() {
     battleBoardHead.textContent = 'Choose a Class'
   } else if (battleCount === 5) {
     battleBoardHead.textContent = `FINAL BATTLE`
-  } else if (winner) {
-    battleBoardHead.textContent = `VICTORY`
+  } else if (winner && playerCurrentHP <= 0) {
+    battleBoardHead.textContent = `DEFEAT. TRY AGAIN?`
+    turn = null
+  } else if (winner && enemyCurrentHP <= 0) {
+    battleBoardHead.textContent = 'VICTORY'
   } else {
     battleBoardHead.textContent = `Round ${battleCount}/5`
   }
@@ -206,6 +212,7 @@ function checkSpeed() {
     turn = -1
   } else if (statObj.spd < enemy.spd) {
     turn = 1
+    enemyTurn()
   } 
 }
 
