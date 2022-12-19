@@ -126,14 +126,9 @@ function renderTurnMessage() {
 }
 
 function handleAtkClick () {
-  enemyCurrentHP = enemyCurrentHP - statObj.atk
-  
-  if (enemyCurrentHP <= 0 || playerCurrentHP <= 0) {
-    winner = true
-    turn = 0
-  }
-  turn *= -1
-  console.log(turn);
+  playerTurn()
+  render()
+  enemyTurn()
   render()
   //repeat above until hp <= 
   //if winner, 
@@ -142,8 +137,22 @@ function handleAtkClick () {
     //return prize options
 }
 
+function playerTurn() {
+  enemyCurrentHP -= statObj.atk
+  if (enemyCurrentHP <= 0) {
+    winner = true
+    turn = 0
+  }
+  turn *= -1
+}
+
 function enemyTurn() {
-  
+  playerCurrentHP -= enemy.atk
+  if (playerCurrentHP <= 0) {
+    winner = true
+    turn = 0
+  }
+  turn *= -1
 }
 
 function handlePrizeClick() {
@@ -158,7 +167,6 @@ function renderCharacters () {
     `<h2 id="current-class"></h2>
     <p class ="current-HP" id="player-HP"></p>
     <button id="atk-btn">ATTACK!</button>`
-
   document.getElementById('current-class').textContent = currentClass
   document.getElementById('player-HP').textContent = playerCurrentHP
   document.getElementById('computer-hud').innerHTML = 
