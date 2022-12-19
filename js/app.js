@@ -58,6 +58,7 @@ let enemy
 let currentClass
 let playerCurrentHP
 let enemyCurrentHP
+let winner
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -118,8 +119,14 @@ function renderTurnMessage() {
 
 function handleAtkClick () {
   enemyCurrentHP = enemyCurrentHP - statObj.atk
-  renderCharacters()
-  //apply damage
+  
+  if (enemyCurrentHP <= 0 || playerCurrentHP <= 0) {
+    winner = true
+    turn = 0
+  }
+  turn *= -1
+  console.log(turn);
+  render()
   //check for winner
   //if no winner, switch turn
   //repeat above until hp <= 
@@ -164,6 +171,8 @@ function renderMessage() {
     battleBoardHead.textContent = 'Choose a Class'
   } else if (battleCount === 5) {
     battleBoardHead.textContent = `FINAL BATTLE`
+  } else if (winner) {
+    battleBoardHead.textContent = `VICTORY`
   } else {
     battleBoardHead.textContent = `Round ${battleCount}/5`
   }
