@@ -107,6 +107,21 @@ button {
   border-radius: 10px;
 }
 
+#prizes {
+  display: flex;
+  position: absolute;
+  align-self: center;
+  top: 50%;
+  gap: 24px;
+}
+
+#prizes p {
+  border: 1px solid black;
+  height: min-content;
+  padding: 16px;
+  background-color: brown;
+}
+
 footer {
   display: flex;
   flex-direction: column;

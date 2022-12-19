@@ -60,7 +60,7 @@ let enemy
 let currentClass
 let playerCurrentHP
 let enemyCurrentHP
-let winner
+let winner = false
 
 
 
@@ -69,6 +69,7 @@ let winner
 const allClasses = document.querySelector('#classes')
 const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
+const prizes = document.querySelector('#prizes')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -130,7 +131,12 @@ function renderTurnMessage() {
 
 function handleAtkClick () {
   playerTurn()
-  setTimeout(() => enemyTurn(), 1000)
+  if (winner) {
+    renderPrizes()
+    console.log(prizes);
+    return
+  }
+  setTimeout(() => enemyTurn(), 0)
   //repeat above until hp <= 
   //if winner, 
     //announce winner
@@ -148,8 +154,13 @@ function playerTurn() {
   render()
 }
 
+function renderPrizes() {
+  document.getElementById('prizes').innerHTML = `<p id="prize1"></p><p id="prize2"></p><p id="prize3"></p>`
+  document.getElementById('player-hud').style.border = 'none'
+}
+
 function enemyTurn() {
-  playerCurrentHP -= statObj.atk
+  playerCurrentHP -= enemy.atk
   if (playerCurrentHP <= 0) {
     winner = true
     turn = 0
@@ -212,7 +223,7 @@ function checkSpeed() {
     turn = -1
   } else if (statObj.spd < enemy.spd) {
     turn = 1
-    enemyTurn()
+    setTimeout(() => enemyTurn(), 1000)
   } 
 }
 
