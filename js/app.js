@@ -23,7 +23,8 @@ const rogue = new Class(30, 5, 7, 3, 6)
 const sorceress = new Class(30, 10, 3, 2, 5)
 
 class Enemy {
-  constructor (maxHP, atk, spd, def, crit) {
+  constructor (name, maxHP, atk, spd, def, crit) {
+    this.name = name
     this.maxHP = maxHP
     this.atk = atk
     this.spd = spd
@@ -32,11 +33,11 @@ class Enemy {
   }
 }
 
-const enemy1 = new Enemy (40, 4, 4, 3, 1)
-const enemy2 = new Enemy (50, 5, 5, 4, 2)
-const enemy3 = new Enemy (60, 6, 6, 5, 3)
-const enemy4 = new Enemy (70, 7, 7, 6, 3)
-const enemy5 = new Enemy (80, 8, 8, 7, 4)
+const enemy1 = new Enemy ('enemy1', 40, 4, 4, 3, 1)
+const enemy2 = new Enemy ('enemy2', 50, 5, 5, 4, 2)
+const enemy3 = new Enemy ('enemy3', 60, 6, 6, 5, 3)
+const enemy4 = new Enemy ('enemy4', 70, 7, 7, 6, 3)
+const enemy5 = new Enemy ('enemy5', 80, 8, 8, 7, 4)
 
 const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
@@ -54,6 +55,7 @@ let boardMessage
 let battleCount = 0
 let turn = null
 let enemy
+let currentClass
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -90,7 +92,7 @@ function render() {
   renderStats()
   renderMessage()
   renderTurnMessage()
-  // if (classChosen) renderCharacters()
+  if (classChosen) renderCharacters()
 }
 
 function initFight() {
@@ -129,6 +131,19 @@ function handlePrizeClick() {
 }
 // FUNCTION HANDLE CLICK 
 // FUNCTION RENDER CHARACTERS
+function renderCharacters () {
+  document.getElementById('player-hud').innerHTML = 
+    `<h2 id="current-class"></h2>
+    <p class ="current-HP" id="player-HP"></p>
+    <button id="atk-btn">ATTACK!</button>`
+  document.getElementById('current-class').textContent = currentClass
+  document.getElementById('player-HP').textContent = statObj.maxHP
+  document.getElementById('computer-hud').innerHTML = 
+  `<h2 id="enemy-name"></h2>
+  <p class ="current-HP" id="enemy-HP"></p>`
+  document.getElementById('enemy-name').textContent = enemy.name
+  document.getElementById('enemy-HP').textContent = enemy.maxHP
+}
 
 function renderStats() {
   maxHP.textContent = statObj.maxHP
@@ -168,16 +183,19 @@ function selectChar(evt) {
       for (stat in statObj) {
         statObj[stat] = barbarian[stat]
       }
+      currentClass = `BARBARIAN`
       break
     case 'rog':
       for (stat in statObj) {
         statObj[stat] = rogue[stat]
       }
+      currentClass = `ROGUE`
       break
     case 'sor':
       for (stat in statObj) {
         statObj[stat] = sorceress[stat]
       }
+      currentClass = `SORCERESS`
       break
   }
   allClasses.removeEventListener('click', selectChar)

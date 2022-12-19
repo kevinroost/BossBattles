@@ -82,12 +82,21 @@ section {
   display: flex;
   flex-direction: column;
   width: 50%;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 20px
+}
+
+#computer-HUD {
+  display: block;
+}
+
+.current-HP {
+  font-size: 80px;
+  margin: 32px;
 }
 
 #player-hud {
   border-right: 1px solid black;
-
 }
 
 footer {
@@ -95,4 +104,5 @@ footer {
   flex-direction: column;
   height: 64px;
   justify-content: center;
+  font-size: 32px;
 }
