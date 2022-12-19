@@ -69,11 +69,11 @@ const footer = document.querySelector('footer')
 /*----------------------------- Event Listeners -----------------------------*/
 
 
-barSelect.addEventListener('click', selectChar)
-rogSelect.addEventListener('click', selectChar)
-sorSelect.addEventListener('click', selectChar)
+// barSelect.addEventListener('click', selectChar)
+// rogSelect.addEventListener('click', selectChar)
+// sorSelect.addEventListener('click', selectChar)
 
-// allClasses.addEventListener('click', selectChar)
+allClasses.addEventListener('click', selectChar)
 
 
 
@@ -164,7 +164,6 @@ function checkSpeed() {
 }
 
 function selectChar(evt) {
-  console.log(evt.target.className);
   if (evt.target.className != 'class') return
   classChosen = true
   switch(evt.target.id) {
@@ -184,6 +183,7 @@ function selectChar(evt) {
       }
       break
   }
+  allClasses.removeEventListener('click', selectChar)
   console.log(statObj);
   initFight()
 }
