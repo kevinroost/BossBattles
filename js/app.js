@@ -56,6 +56,8 @@ let battleCount = 0
 let turn = null
 let enemy
 let currentClass
+let playerCurrentHP
+let enemyCurrentHP
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -63,6 +65,7 @@ let currentClass
 const allClasses = document.querySelector('#classes')
 const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
+
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -114,6 +117,8 @@ function renderTurnMessage() {
 }
 
 function handleAtkClick () {
+  enemyCurrentHP = enemyCurrentHP - statObj.atk
+  renderCharacters()
   //apply damage
   //check for winner
   //if no winner, switch turn
@@ -130,19 +135,20 @@ function handlePrizeClick() {
   //initFight
 }
 // FUNCTION HANDLE CLICK 
-// FUNCTION RENDER CHARACTERS
+
 function renderCharacters () {
   document.getElementById('player-hud').innerHTML = 
     `<h2 id="current-class"></h2>
     <p class ="current-HP" id="player-HP"></p>
     <button id="atk-btn">ATTACK!</button>`
+  document.querySelector('#atk-btn').addEventListener('click', handleAtkClick)
   document.getElementById('current-class').textContent = currentClass
-  document.getElementById('player-HP').textContent = statObj.maxHP
+  document.getElementById('player-HP').textContent = playerCurrentHP
   document.getElementById('computer-hud').innerHTML = 
   `<h2 id="enemy-name"></h2>
   <p class ="current-HP" id="enemy-HP"></p>`
   document.getElementById('enemy-name').textContent = enemy.name
-  document.getElementById('enemy-HP').textContent = enemy.maxHP
+  document.getElementById('enemy-HP').textContent = enemyCurrentHP
 }
 
 function renderStats() {
@@ -165,6 +171,7 @@ function renderMessage() {
 
 function findEnemy() {
   enemy = enemies[battleCount]
+  enemyCurrentHP = enemy.maxHP
 }
 
 function checkSpeed() {
@@ -199,6 +206,7 @@ function selectChar(evt) {
       break
   }
   allClasses.removeEventListener('click', selectChar)
+  playerCurrentHP = statObj.maxHP
   console.log(statObj);
   disableClassButtons()
   initFight()
@@ -207,7 +215,6 @@ function selectChar(evt) {
 function disableClassButtons() {
   allClasses.style.color = 'gray'
   for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
-    console.log(document.getElementsByClassName("class")[i]);
     document.getElementsByClassName("class")[i].style.border = '3px solid gray'
     document.getElementsByClassName("class")[i].style.cursor = 'default'
   }
@@ -220,3 +227,4 @@ function pickUpItem () {
 function updateStat(stat, inc) {
   stat.textContent = parseInt(stat.textContent) + inc
 }
+
