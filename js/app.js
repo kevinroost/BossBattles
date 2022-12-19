@@ -68,7 +68,6 @@ const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
 
 
-
 /*----------------------------- Event Listeners -----------------------------*/
 
 
@@ -95,8 +94,8 @@ function init() {
 function render() {
   renderStats()
   renderMessage()
-  renderTurnMessage()
   if (classChosen) renderCharacters()
+  renderTurnMessage()
 }
 
 function initFight() {
@@ -108,13 +107,22 @@ function initFight() {
 }
 
 function renderTurnMessage() {
-  if (turn === -1) {
-    footer.textContent = `It's your turn!`
-  } else if (turn === 1) {
-    footer.textContent = `It's the monster's turn.`
-  } else if (turn === 0) {
-    footer.textContent = `Choose your prize!`
-  } else if (turn === null) footer.textContent = null
+  switch(turn) {
+    case -1:
+      footer.textContent = `It's your turn!`
+      document.querySelector('#atk-btn').addEventListener('click', handleAtkClick)
+      break
+    case 1:
+      footer.textContent = `It's the monster's turn.`
+      document.querySelector('#atk-btn').removeEventListener('click', handleAtkClick)
+      break
+    case 0:
+      footer.textContent = `Choose your prize!`
+      break
+    case null:
+      footer.textContent = null
+    break
+    }
 }
 
 function handleAtkClick () {
@@ -127,13 +135,15 @@ function handleAtkClick () {
   turn *= -1
   console.log(turn);
   render()
-  //check for winner
-  //if no winner, switch turn
   //repeat above until hp <= 
   //if winner, 
     //announce winner
     //turn = 0 and 
     //return prize options
+}
+
+function enemyTurn() {
+  
 }
 
 function handlePrizeClick() {
@@ -148,7 +158,7 @@ function renderCharacters () {
     `<h2 id="current-class"></h2>
     <p class ="current-HP" id="player-HP"></p>
     <button id="atk-btn">ATTACK!</button>`
-  document.querySelector('#atk-btn').addEventListener('click', handleAtkClick)
+
   document.getElementById('current-class').textContent = currentClass
   document.getElementById('player-HP').textContent = playerCurrentHP
   document.getElementById('computer-hud').innerHTML = 
@@ -214,7 +224,6 @@ function selectChar(evt) {
       currentClass = `SORCERESS`
       break
   }
-  allClasses.removeEventListener('click', selectChar)
   playerCurrentHP = statObj.maxHP
   console.log(statObj);
   disableClassButtons()
@@ -222,6 +231,7 @@ function selectChar(evt) {
 }
 
 function disableClassButtons() {
+  allClasses.removeEventListener('click', selectChar)
   allClasses.style.color = 'gray'
   for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
     document.getElementsByClassName("class")[i].style.border = '3px solid gray'
