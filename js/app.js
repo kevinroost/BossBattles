@@ -33,7 +33,7 @@ class Enemy {
   }
 }
 
-const enemy1 = new Enemy ('enemy1', 40, 4, 4, 3, 7)
+const enemy1 = new Enemy ('enemy1', 40, 4, 4, 3, 1)
 const enemy2 = new Enemy ('enemy2', 50, 5, 5, 4, 2)
 const enemy3 = new Enemy ('enemy3', 60, 6, 6, 5, 3)
 const enemy4 = new Enemy ('enemy4', 70, 7, 7, 6, 3)
@@ -54,7 +54,7 @@ const possiblePrizes = []
 const prize1 = new Prize ('Whetstone', 'atk', 3)
 const prize2 = new Prize ('Small Shield', 'def', 3)
 const prize3 = new Prize ('Light Boots', 'def', 2)
-const prize4 = new Prize ('Glasses', 'crit chance', 2)
+const prize4 = new Prize ('Glasses', 'crit', 2)
 const prize5 = new Prize ('Adrenaline', 'spd', 2)
 const prize6 = new Prize ('Grip', 'atk', 2)
 const prize7 = new Prize ('Go Go Go!', 'spd', 3)
@@ -151,7 +151,7 @@ function handleAtkClick () {
     console.log(prizes);
     return
   }
-  setTimeout(() => enemyTurn(), 1000)
+  setTimeout(() => enemyTurn(), 0)
   //repeat above until hp <= 
   //if winner, 
   //announce winner
@@ -189,22 +189,23 @@ function handlePrizeClick(evt) {
   if (evt.target.className != 'loot-option') return
   let prizeIndex = evt.target.id.slice(-1)
   updateStat(pendingPrizes[prizeIndex].stat, pendingPrizes[prizeIndex].increment, prizeIndex)
+  console.log(prizeIndex);
+  for (let i = pendingPrizes.length - 1; i >=0 ; i--) {
+    if (i != prizeIndex) {
+      possiblePrizes.push(pendingPrizes.splice(i, 1)[0])
+    } else pendingPrizes.splice(i, 1)
+    console.log(possiblePrizes);
+  }
   winner = false
   initFight()
   prizes.innerHTML = null
   //boost applicable stats
   //update inventory
   //initFight
+}
 
-
-function updateStat(stat, inc, prizeIndex) {
+function updateStat(stat, inc) {
   statObj[stat] = statObj[stat] + inc
-  console.log(statObj);
-  pendingPrizes.forEach(prize => {
-    if (pendingPrizes.indexOf(prize) != prizeIndex)
-    possiblePrizes.push(pendingPrizes.splice(pendingPrizes.indexOf(prize), 1)[0])
-  })
-  console.log(possiblePrizes);
 }
 
 function enemyTurn() {
