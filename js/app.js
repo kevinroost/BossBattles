@@ -41,8 +41,26 @@ const enemy5 = new Enemy ('enemy5', 80, 8, 8, 7, 4)
 
 const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
+class Prize {
+  constructor (name, stat, increment) {
+    this.name = name
+    this.stat = stat
+    this.increment = increment
+  }
+}
+
+const possiblePrizes = []
+
+const prize1 = new Prize ('Whetstone', 'atk', 3)
+const prize2 = new Prize ('Small Shield', 'def', 3)
+const prize3 = new Prize ('Light Boots', 'def', 2)
+const prize4 = new Prize ('Glasses', 'crit chance', 2)
+const prize5 = new Prize ('Adrenaline', 'spd', 2)
+const prize6 = new Prize ('Grip', 'atk', 2)
+const prize7 = new Prize ('Go Go Go!', 'spd', 3)
 
 
+console.log(prize1);
 
 /*---------------------------- Variables (state) ----------------------------*/
 
