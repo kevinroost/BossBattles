@@ -58,9 +58,9 @@ const prize4 = new Prize ('Glasses', 'crit chance', 2)
 const prize5 = new Prize ('Adrenaline', 'spd', 2)
 const prize6 = new Prize ('Grip', 'atk', 2)
 const prize7 = new Prize ('Go Go Go!', 'spd', 3)
+possiblePrizes.push(prize1, prize2, prize3, prize4, prize5, prize6, prize7)
 
-
-console.log(prize1);
+console.log(possiblePrizes);
 
 /*---------------------------- Variables (state) ----------------------------*/
 
