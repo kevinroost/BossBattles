@@ -87,6 +87,8 @@ const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
 const prizes = document.querySelector('#prizes')
 
+const pendingPrizes = []
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -166,28 +168,43 @@ function handleAtkClick () {
 }
 
 function renderPrizes() {
-  const pending = []
-  pending.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
-  pending.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
-  pending.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
-  document.getElementById('prizes').innerHTML = `<p id="prize0"></p><p id="prize1"></p><p id="prize2"></p>`
+  pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
+  pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
+  pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
+  console.log(pendingPrizes);
+  document.getElementById('prizes').innerHTML = `<p class="loot-option" id="prize0"></p><p class="loot-option" id="prize1"></p><p class="loot-option" id="prize2"></p>`
   for (let i = 0; i < 3; i++) {
     id = `prize${i}`
-    document.getElementById(id).innerHTML = pending[0].name + '<br>' + pending[0].stat + " +" + pending[0].increment
-    possiblePrizes.push(pending.splice(0, 1)[0])
+    document.getElementById(id).innerHTML = pendingPrizes[i].name + '<br>' + pendingPrizes[i].stat + " +" + pendingPrizes[i].increment
   }
   document.getElementById('player-hud').style.borderRight = 'none'
   document.getElementById('characters').style.visibility = 'hidden'
 }
 
-function handlePrizeClick() {
+function handlePrizeClick(evt) {
+  if (evt.target.className != 'loot-option') return
+  let prizeIndex = evt.target.id.slice(-1)
+  updateStat(pendingPrizes[prizeIndex].stat, pendingPrizes[prizeIndex].increment, prizeIndex)
   winner = false
   initFight()
   prizes.innerHTML = null
-  document.getElementById('player-hud').style.borderRight = '1px solid black'
   //boost applicable stats
   //update inventory
   //initFight
+}
+
+// function pickUpItem () {
+//   updateStat(maxHP, 3)
+// }
+
+function updateStat(stat, inc, prizeIndex) {
+  statObj[stat] = statObj[stat] + inc
+  console.log(statObj);
+  pendingPrizes.forEach(prize => {
+    if (pendingPrizes.indexOf(prize) != prizeIndex)
+    possiblePrizes.push(pendingPrizes.splice(pendingPrizes.indexOf(prize), 1)[0])
+  })
+  console.log(possiblePrizes);
 }
 
 function enemyTurn() {
@@ -292,10 +309,3 @@ function disableClassButtons() {
   }
 }
 
-function pickUpItem () {
-  updateStat(maxHP, 3)
-}
-
-function updateStat(stat, inc) {
-  stat.textContent = parseInt(stat.textContent) + inc
-}
