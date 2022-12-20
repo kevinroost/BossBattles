@@ -33,7 +33,7 @@ class Enemy {
   }
 }
 
-const enemy1 = new Enemy ('enemy1', 40, 4, 4, 3, 1)
+const enemy1 = new Enemy ('enemy1', 40, 4, 4, 3, 7)
 const enemy2 = new Enemy ('enemy2', 50, 5, 5, 4, 2)
 const enemy3 = new Enemy ('enemy3', 60, 6, 6, 5, 3)
 const enemy4 = new Enemy ('enemy4', 70, 7, 7, 6, 3)
@@ -77,6 +77,7 @@ let currentClass
 let playerCurrentHP
 let enemyCurrentHP
 let winner = false
+let isCrit
 
 
 
@@ -150,7 +151,7 @@ function handleAtkClick () {
     console.log(prizes);
     return
   }
-  setTimeout(() => enemyTurn(), 0)
+  setTimeout(() => enemyTurn(), 1000)
   //repeat above until hp <= 
   //if winner, 
   //announce winner
@@ -158,12 +159,10 @@ function handleAtkClick () {
   //return prize options
 }
 
-  function playerTurn() {
+function playerTurn() {
   let critRoll = Math.floor(Math.random() * 21)
-  if (critRoll <= statObj.crit) {
-    enemyCurrentHP -= (statObj.atk * 2)
-  } else enemyCurrentHP -= statObj.atk
-  enemyCurrentHP -= statObj.atk
+  isCrit = critRoll <= statObj.crit ? true : false
+  enemyCurrentHP = isCrit ? enemyCurrentHP - (statObj.atk * 2) : enemyCurrentHP - statObj.atk
   if (enemyCurrentHP <= 0) {
     winner = true
     turn = 0
@@ -196,11 +195,7 @@ function handlePrizeClick(evt) {
   //boost applicable stats
   //update inventory
   //initFight
-}
 
-// function pickUpItem () {
-//   updateStat(maxHP, 3)
-// }
 
 function updateStat(stat, inc, prizeIndex) {
   statObj[stat] = statObj[stat] + inc
@@ -214,9 +209,9 @@ function updateStat(stat, inc, prizeIndex) {
 
 function enemyTurn() {
   let critRoll = Math.floor(Math.random() * 21)
-  if (critRoll <= enemy.crit) {
-    playerCurrentHP -= (enemy.atk * 2)
-  } else playerCurrentHP -= enemy.atk
+  isCrit = critRoll <= enemy.crit ? true : false
+  playerCurrentHP = isCrit ? playerCurrentHP - (enemy.atk * 2) : playerCurrentHP - enemy.atk
+  console.log(isCrit);
   if (playerCurrentHP <= 0) {
     winner = true
     turn = 0
