@@ -158,6 +158,10 @@ function handleAtkClick () {
 }
 
   function playerTurn() {
+  let critRoll = Math.floor(Math.random() * 21)
+  if (critRoll <= statObj.crit) {
+    enemyCurrentHP -= (statObj.atk * 2)
+  } else enemyCurrentHP -= statObj.atk
   enemyCurrentHP -= statObj.atk
   if (enemyCurrentHP <= 0) {
     winner = true
@@ -208,7 +212,10 @@ function updateStat(stat, inc, prizeIndex) {
 }
 
 function enemyTurn() {
-  playerCurrentHP -= enemy.atk
+  let critRoll = Math.floor(Math.random() * 21)
+  if (critRoll <= enemy.crit) {
+    playerCurrentHP -= (enemy.atk * 2)
+  } else playerCurrentHP -= enemy.atk
   if (playerCurrentHP <= 0) {
     winner = true
     turn = 0
