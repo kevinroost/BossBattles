@@ -117,6 +117,7 @@ function render() {
 
 function initFight() {
   findEnemy()
+  playerCurrentHP = statObj.maxHP
   battleCount = battleCount + 1
   console.log(enemy);
   checkSpeed()
