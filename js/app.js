@@ -60,8 +60,6 @@ const prize6 = new Prize ('Grip', 'atk', 2)
 const prize7 = new Prize ('Go Go Go!', 'spd', 3)
 possiblePrizes.push(prize1, prize2, prize3, prize4, prize5, prize6, prize7)
 
-console.log(possiblePrizes);
-
 /*---------------------------- Variables (state) ----------------------------*/
 
 let maxHP = document.querySelector('#max-hp')
@@ -91,11 +89,6 @@ const prizes = document.querySelector('#prizes')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-
-
-// barSelect.addEventListener('click', selectChar)
-// rogSelect.addEventListener('click', selectChar)
-// sorSelect.addEventListener('click', selectChar)
 
 allClasses.addEventListener('click', selectChar)
 prizes.addEventListener('click', handlePrizeClick)
@@ -144,8 +137,8 @@ function renderTurnMessage() {
     case null:
       footer.textContent = null
       break
-    }
   }
+}
   
   function handleAtkClick () {
     playerTurn()
@@ -154,7 +147,7 @@ function renderTurnMessage() {
       console.log(prizes);
       return
     }
-    setTimeout(() => enemyTurn(), 1000)
+    setTimeout(() => enemyTurn(), 0)
     //repeat above until hp <= 
     //if winner, 
     //announce winner
@@ -183,7 +176,8 @@ function playerTurn() {
 }
 
 function renderPrizes() {
-  document.getElementById('prizes').innerHTML = `<p id="prize1"></p><p id="prize2"></p><p id="prize3"></p>`
+  getRandomItems()
+  document.getElementById('prizes').innerHTML = `<p id="prize1">pending[1]</p><p id="prize2"></p><p id="prize3"></p>`
   document.getElementById('player-hud').style.border = 'none'
 }
 
@@ -287,6 +281,14 @@ function disableClassButtons() {
   }
 }
 
+function getRandomItems() {
+  const pending = []
+  pending.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1))
+  pending.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1))
+  pending.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1))
+  return pending;
+}
+
 function pickUpItem () {
   updateStat(maxHP, 3)
 }
@@ -295,3 +297,4 @@ function updateStat(stat, inc) {
   stat.textContent = parseInt(stat.textContent) + inc
 }
 
+console.log(getRandomItems());
