@@ -13,7 +13,7 @@ html {
 
 body {
   background-color: lightblue;
-  padding: 56px;
+  padding: 40px;
 }
 
 section {
@@ -69,7 +69,7 @@ section {
 
 #stats,
 #items {
-  width: 256px;
+  width: 275px;
   align-self: center;
 }
 
@@ -112,7 +112,7 @@ button {
   position: absolute;
   align-self: center;
   top: 45%;
-  gap: 24px;
+  gap: 16px;
 }
 
 #prizes p {
@@ -121,7 +121,7 @@ button {
   padding: 16px;
   background-color: brown;
   font-size: 20px;
-  width: 156px;
+  width: 175px;
   cursor: pointer;
 }
 

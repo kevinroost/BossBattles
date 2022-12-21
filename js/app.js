@@ -132,7 +132,6 @@ function render() {
   renderMessage()
   if (classChosen) renderCharacters()
   renderTurnMessage()
-  renderEquippedItems()
 }
 
 function initFight() {
@@ -186,17 +185,23 @@ function playerTurn() {
     turn = 0
   }
   turn *= -1
-  renderCharacters()
+  render()
 }
 
 function renderPrizes() {
-  pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
+  pendingPrizes.push(possiblePrizes[10])
+
+  // pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   document.getElementById('prizes').innerHTML = `<p class="loot-option" id="0"></p><p class="loot-option" id="1"></p><p class="loot-option" id="2"></p>`
   for (let i = 0; i < 3; i++) {
     id = `${i}`
-    document.getElementById(id).innerHTML = pendingPrizes[i].name + '<br>' + pendingPrizes[i].stat + " +" + pendingPrizes[i].increment
+    if (!(pendingPrizes[i].stat2)) {
+      document.getElementById(id).innerHTML = pendingPrizes[i].name + '<br>' + pendingPrizes[i].stat + ' +' + pendingPrizes[i].increment
+    } else if (pendingPrizes[i].stat2) {
+      document.getElementById(id).innerHTML = pendingPrizes[i].name + '<br>' + pendingPrizes[i].stat + " +" + pendingPrizes[i].increment + " " + pendingPrizes[i].stat2 + ' +' + pendingPrizes[i].increment2
+    }
   }
   document.getElementById('player-hud').style.borderRight = 'none'
   document.getElementById('characters').style.visibility = 'hidden'
@@ -215,6 +220,7 @@ function handlePrizeClick(evt) {
   console.log(equippedItems);
   console.log(possiblePrizes);
   winner = false
+  renderEquippedItems()
   initFight()
   prizes.innerHTML = null
   //boost applicable stats
@@ -225,8 +231,13 @@ function handlePrizeClick(evt) {
 function renderEquippedItems() {
   equippedList.innerHTML = null
   equippedItems.forEach(item => {
-    equippedList.append(`${item.name}, ${item.stat}+${item.increment} ${item.stat2}+${item.increment2}`, document.createElement('p'))
+    if (!(item.stat2)) {
+      equippedList.append(`${item.name}, ${item.stat}+${item.increment}`, document.createElement('p'))
+    } else if (item.stat2) {
+      equippedList.append(`${item.name}, ${item.stat}+${item.increment} ${item.stat2}+${item.increment2}`, document.createElement('p'))
+    }
   })
+  console.log('here!');
 }
 
 // function sumStat() {
