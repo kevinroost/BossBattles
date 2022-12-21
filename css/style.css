@@ -122,6 +122,7 @@ button {
   background-color: brown;
   font-size: 20px;
   width: 156px;
+  cursor: pointer;
 }
 
 footer {

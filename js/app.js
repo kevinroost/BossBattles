@@ -49,6 +49,7 @@ class Prize {
   }
 }
 
+const equippedItems = []
 const possiblePrizes = []
 
 const prize1 = new Prize ('Whetstone', 'atk', 3)
@@ -58,6 +59,15 @@ const prize4 = new Prize ('Glasses', 'crit', 2)
 const prize5 = new Prize ('Adrenaline', 'spd', 2)
 const prize6 = new Prize ('Grip', 'atk', 2)
 const prize7 = new Prize ('Go Go Go!', 'spd', 3)
+const prize8 = new Prize ('Go Go Go!', 'spd', 3)
+const prize9 = new Prize ('Go Go Go!', 'spd', 3)
+const prize10 = new Prize ('Go Go Go!', 'spd', 3)
+const prize11 = new Prize ('Go Go Go!', 'spd', 3)
+const prize12 = new Prize ('Go Go Go!', 'spd', 3)
+const prize13 = new Prize ('Go Go Go!', 'spd', 3)
+const prize14 = new Prize ('Go Go Go!', 'spd', 3)
+const prize15 = new Prize ('Go Go Go!', 'spd', 3)
+const prize16 = new Prize ('Go Go Go!', 'spd', 3)
 possiblePrizes.push(prize1, prize2, prize3, prize4, prize5, prize6, prize7)
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -81,12 +91,15 @@ let isCrit
 
 
 
+
+
 /*------------------------ Cached Element References ------------------------*/
 
 const allClasses = document.querySelector('#classes')
 const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
 const prizes = document.querySelector('#prizes')
+const equippedList = document.querySelector('#item-list')
 
 const pendingPrizes = []
 
@@ -114,6 +127,7 @@ function render() {
   renderMessage()
   if (classChosen) renderCharacters()
   renderTurnMessage()
+  renderEquippedItems()
 }
 
 function initFight() {
@@ -168,14 +182,13 @@ function playerTurn() {
     turn = 0
   }
   turn *= -1
-  render()
+  renderCharacters()
 }
 
 function renderPrizes() {
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
-  console.log(pendingPrizes);
   document.getElementById('prizes').innerHTML = `<p class="loot-option" id="prize0"></p><p class="loot-option" id="prize1"></p><p class="loot-option" id="prize2"></p>`
   for (let i = 0; i < 3; i++) {
     id = `prize${i}`
@@ -188,14 +201,15 @@ function renderPrizes() {
 function handlePrizeClick(evt) {
   if (evt.target.className != 'loot-option') return
   let prizeIndex = evt.target.id.slice(-1)
-  updateStat(pendingPrizes[prizeIndex].stat, pendingPrizes[prizeIndex].increment, prizeIndex)
+  updateStat(pendingPrizes[prizeIndex].stat, pendingPrizes[prizeIndex].increment)
   console.log(prizeIndex);
   for (let i = pendingPrizes.length - 1; i >=0 ; i--) {
     if (i != prizeIndex) {
       possiblePrizes.push(pendingPrizes.splice(i, 1)[0])
-    } else pendingPrizes.splice(i, 1)
-    console.log(possiblePrizes);
+    } else equippedItems.push(pendingPrizes.splice(i, 1)[0])
   }
+  console.log(equippedItems);
+  console.log(possiblePrizes);
   winner = false
   initFight()
   prizes.innerHTML = null
@@ -203,6 +217,27 @@ function handlePrizeClick(evt) {
   //update inventory
   //initFight
 }
+
+function renderEquippedItems() {
+  equippedList.innerHTML = null
+  equippedItems.forEach(item => {
+    equippedList.append(`${item.name}, ${item.stat}+${item.increment}`, document.createElement('p'))
+  })
+}
+
+// function sumStat() {
+//   console.log(statObj);
+//   for (stat in statObj) {
+//     statObj[stat] = barbarian[stat]
+//   }
+//   for (const statKey in statObj) {
+//     equippedItems.forEach(item => {
+//       if (item.stat === statKey) {
+//         statObj.statKey = statObj.statKey + item.increment
+//       }
+//     })
+//   }
+// }
 
 function updateStat(stat, inc) {
   statObj[stat] = statObj[stat] + inc
