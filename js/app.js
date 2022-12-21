@@ -42,33 +42,38 @@ const enemy5 = new Enemy ('enemy5', 80, 8, 8, 7, 4)
 const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
 class Prize {
-  constructor (name, stat, increment) {
+  constructor (name, stat, increment, stat2, increment2) {
     this.name = name
     this.stat = stat
     this.increment = increment
+    this.stat2 = stat2
+    this.increment2 = increment2
   }
 }
 
 const equippedItems = []
-const possiblePrizes = []
-
-const prize1 = new Prize ('Whetstone', 'atk', 3)
-const prize2 = new Prize ('Small Shield', 'def', 3)
-const prize3 = new Prize ('Light Boots', 'def', 2)
-const prize4 = new Prize ('Glasses', 'crit', 2)
-const prize5 = new Prize ('Adrenaline', 'spd', 2)
-const prize6 = new Prize ('Grip', 'atk', 2)
-const prize7 = new Prize ('Go Go Go!', 'spd', 3)
-const prize8 = new Prize ('Go Go Go!', 'spd', 3)
-const prize9 = new Prize ('Go Go Go!', 'spd', 3)
-const prize10 = new Prize ('Go Go Go!', 'spd', 3)
-const prize11 = new Prize ('Go Go Go!', 'spd', 3)
-const prize12 = new Prize ('Go Go Go!', 'spd', 3)
-const prize13 = new Prize ('Go Go Go!', 'spd', 3)
-const prize14 = new Prize ('Go Go Go!', 'spd', 3)
-const prize15 = new Prize ('Go Go Go!', 'spd', 3)
-const prize16 = new Prize ('Go Go Go!', 'spd', 3)
-possiblePrizes.push(prize1, prize2, prize3, prize4, prize5, prize6, prize7)
+const possiblePrizes = [
+  new Prize ('Whetstone', 'atk', 3),
+  new Prize ('Small Shield', 'def', 3),
+  new Prize ('Light Boots', 'def', 2),
+  new Prize ('Glasses', 'crit', 2),
+  new Prize ('Adrenaline', 'spd', 2),
+  new Prize ('Grip', 'atk', 2),
+  new Prize ('Go Go Go!', 'spd', 3),
+  new Prize ('Ninja Star', 'atk', 2),
+  new Prize ('Spud Launcher', 'atk', 1),
+  new Prize ('Hollow Points', 'atk', 2),
+  new Prize ('Spiked Shield', 'def', 2, 'atk', 1),
+  new Prize ('Steroids', 'atk', 2, 'maxHP', 15),
+  new Prize ('Potion', 'maxHP', 30),
+  new Prize ('Extra Rations', 'maxHP', 20),
+  new Prize ('Four Leaf Clover', 'crit', 2),
+  new Prize ('Unicorn Horn', 'crit', 3),
+  new Prize ('Kevlar', 'def', 3),
+  new Prize ('Mithril Shirt', 'def', 3),
+  new Prize ('Ferrari', 'spd', 4),
+  new Prize ('Roller Blade Attachment', 'spd', 3)
+]
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -200,7 +205,7 @@ function renderPrizes() {
 function handlePrizeClick(evt) {
   if (evt.target.className != 'loot-option') return
   let prizeIndex = evt.target.id
-  updateStat(pendingPrizes[prizeIndex].stat, pendingPrizes[prizeIndex].increment)
+  updateStat(pendingPrizes[prizeIndex].stat, pendingPrizes[prizeIndex].increment, pendingPrizes[prizeIndex].stat2, pendingPrizes[prizeIndex].increment2)
   console.log(prizeIndex);
   for (let i = pendingPrizes.length - 1; i >=0 ; i--) {
     if (i != prizeIndex) {
@@ -220,7 +225,7 @@ function handlePrizeClick(evt) {
 function renderEquippedItems() {
   equippedList.innerHTML = null
   equippedItems.forEach(item => {
-    equippedList.append(`${item.name}, ${item.stat}+${item.increment}`, document.createElement('p'))
+    equippedList.append(`${item.name}, ${item.stat}+${item.increment} ${item.stat2}+${item.increment2}`, document.createElement('p'))
   })
 }
 
@@ -238,7 +243,7 @@ function renderEquippedItems() {
 //   }
 // }
 
-function updateStat(stat, inc) {
+function updateStat(stat, inc, stat2, inc2) {
   statObj[stat] = statObj[stat] + inc
 }
 
