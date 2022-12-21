@@ -162,7 +162,6 @@ function handleAtkClick () {
   playerTurn()
   if (winner) {
     renderPrizes()
-    console.log(prizes);
     return
   }
   setTimeout(() => enemyTurn(), 0)
@@ -189,9 +188,9 @@ function renderPrizes() {
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
-  document.getElementById('prizes').innerHTML = `<p class="loot-option" id="prize0"></p><p class="loot-option" id="prize1"></p><p class="loot-option" id="prize2"></p>`
+  document.getElementById('prizes').innerHTML = `<p class="loot-option" id="0"></p><p class="loot-option" id="1"></p><p class="loot-option" id="2"></p>`
   for (let i = 0; i < 3; i++) {
-    id = `prize${i}`
+    id = `${i}`
     document.getElementById(id).innerHTML = pendingPrizes[i].name + '<br>' + pendingPrizes[i].stat + " +" + pendingPrizes[i].increment
   }
   document.getElementById('player-hud').style.borderRight = 'none'
@@ -200,7 +199,7 @@ function renderPrizes() {
 
 function handlePrizeClick(evt) {
   if (evt.target.className != 'loot-option') return
-  let prizeIndex = evt.target.id.slice(-1)
+  let prizeIndex = evt.target.id
   updateStat(pendingPrizes[prizeIndex].stat, pendingPrizes[prizeIndex].increment)
   console.log(prizeIndex);
   for (let i = pendingPrizes.length - 1; i >=0 ; i--) {
