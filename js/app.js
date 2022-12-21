@@ -18,7 +18,7 @@ class Class {
   }
 }
 
-const barbarian = new Class(80, 4, 5, 5, 2)
+const barbarian = new Class(80, 100, 5, 5, 2)
 const rogue = new Class(30, 5, 7, 3, 6)
 const sorceress = new Class(30, 10, 3, 2, 5)
 
@@ -128,6 +128,10 @@ function init() {
 }
 
 function render() {
+  if (battleCount === 5 && winner) {
+    gameEnd()
+    return
+  }
   renderStats()
   renderMessage()
   if (classChosen) renderCharacters()
@@ -164,8 +168,11 @@ function renderTurnMessage() {
   
 function handleAtkClick () {
   playerTurn()
-  if (winner) {
+  if (winner && battleCount < 5) {
     renderPrizes()
+    return
+  } else if (winner && battleCount === 5) {
+    gameEnd()
     return
   }
   setTimeout(() => enemyTurn(), 0)
@@ -204,9 +211,7 @@ function calculateDamage(atk, opposingDef, crit) {
 }
 
 function renderPrizes() {
-  pendingPrizes.push(possiblePrizes[10])
-
-  // pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
+  pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   document.getElementById('prizes').innerHTML = `<p class="loot-option" id="0"></p><p class="loot-option" id="1"></p><p class="loot-option" id="2"></p>`
@@ -254,20 +259,6 @@ function renderEquippedItems() {
   })
   console.log('here!');
 }
-
-// function sumStat() {
-//   console.log(statObj);
-//   for (stat in statObj) {
-//     statObj[stat] = barbarian[stat]
-//   }
-//   for (const statKey in statObj) {
-//     equippedItems.forEach(item => {
-//       if (item.stat === statKey) {
-//         statObj.statKey = statObj.statKey + item.increment
-//       }
-//     })
-//   }
-// }
 
 function updateStat(stat, inc, stat2, inc2) {
   statObj[stat] = statObj[stat] + inc
@@ -317,7 +308,7 @@ function renderMessage() {
     battleBoardHead.textContent = `DEFEAT. TRY AGAIN?`
     turn = null
   } else if (winner && enemyCurrentHP <= 0) {
-    battleBoardHead.textContent = 'VICTORY'
+    battleBoardHead.textContent = 'You Win!'
   } else {
     battleBoardHead.textContent = `Round ${battleCount}/5`
   }
@@ -375,3 +366,9 @@ function disableClassButtons() {
   }
 }
 
+function gameEnd() {
+  battleBoardHead.textContent = `VICTORY`
+  document.getElementById('player-hud').style.borderRight = 'none'
+  document.getElementById('characters').style.visibility = 'hidden'
+  footer.textContent = null
+}
