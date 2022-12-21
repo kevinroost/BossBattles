@@ -177,15 +177,30 @@ function handleAtkClick () {
 }
 
 function playerTurn() {
-  let critRoll = Math.floor(Math.random() * 21)
-  isCrit = critRoll <= statObj.crit ? true : false
-  enemyCurrentHP = isCrit ? enemyCurrentHP - (statObj.atk * 2) : enemyCurrentHP - statObj.atk
+  enemyCurrentHP -= calculateDamage(statObj.atk, enemy.def, statObj.crit)
+  // enemyCurrentHP = isCrit ? enemyCurrentHP - (statObj.atk * 2) : enemyCurrentHP - statObj.atk
   if (enemyCurrentHP <= 0) {
     winner = true
     turn = 0
   }
   turn *= -1
   render()
+}
+
+function calculateDamage(atk, opposingDef, crit) {
+  let damage = atk
+  console.log(damage);
+
+  let critRoll = Math.floor(Math.random() * 21)
+  isCrit = critRoll <= crit ? true : false
+  if (isCrit) damage *= 2
+  console.log(damage);
+
+  damage *= (1 - (opposingDef * .05))
+  console.log(critRoll);
+  console.log(damage);
+  
+  return Math.round(damage)
 }
 
 function renderPrizes() {
@@ -259,10 +274,7 @@ function updateStat(stat, inc, stat2, inc2) {
 }
 
 function enemyTurn() {
-  let critRoll = Math.floor(Math.random() * 21)
-  isCrit = critRoll <= enemy.crit ? true : false
-  playerCurrentHP = isCrit ? playerCurrentHP - (enemy.atk * 2) : playerCurrentHP - enemy.atk
-  console.log(isCrit);
+  playerCurrentHP -= calculateDamage(enemy.atk, statObj.def, enemy.crit)
   if (playerCurrentHP <= 0) {
     winner = true
     turn = 0
