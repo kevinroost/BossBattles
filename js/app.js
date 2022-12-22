@@ -33,6 +33,8 @@ class Enemy {
   }
 }
 
+
+
 const enemy1 = new Enemy ('IMP', 40, 4, 4, 3, 1)
 const enemy2 = new Enemy ('OGRE', 50, 5, 5, 4, 2)
 const enemy3 = new Enemy ('LEVIATHAN', 60, 6, 6, 5, 3)
@@ -250,7 +252,6 @@ function renderEquippedItems() {
       equippedList.append(`${item.name}, ${item.stat}+${item.increment} ${item.stat2}+${item.increment2}`, document.createElement('p'))
     }
   })
-  console.log('here!');
 }
 
 function updateStat(stat, inc, stat2, inc2) {

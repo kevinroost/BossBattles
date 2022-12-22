@@ -1,5 +1,7 @@
 html {
   box-sizing: border-box;
+  height: 100%;
+  padding: 0 0 40px;
 }
 
 *,
@@ -13,7 +15,8 @@ html {
 
 body {
   background-color: lightblue;
-  padding: 40px;
+  padding: 32px;
+  height: 100%;
 }
 
 section {
@@ -22,6 +25,7 @@ section {
   /* align-items: center; */
   justify-content: center;
   gap: 20px;
+  height: max-content
 }
 
 .class {
@@ -33,7 +37,7 @@ section {
 #board {
   justify-content: center;
   padding: 16px;
-  height: 500px;
+  height: 100%;
 }
 
 #board > div {
@@ -85,13 +89,17 @@ section {
   padding: 20px
 }
 
+#characters h2 {
+  font-size: 40px;
+}
+
 #computer-HUD {
   display: block;
 }
 
 .current-HP {
   font-size: 80px;
-  margin: 28px;
+  margin: 24px;
 }
 
 #player-hud {
@@ -104,8 +112,8 @@ button {
   box-shadow: 2px 2px 2px;
   cursor: pointer;
   border-radius: 10px;
-  font-size: 16px;
-  padding: 8px 16px;
+  font-size: 24px;
+  padding: 8px 40px;
 }
 
 #prizes {
