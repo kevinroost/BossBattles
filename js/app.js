@@ -115,6 +115,7 @@ const pendingPrizes = []
 
 allClasses.addEventListener('click', selectChar)
 prizes.addEventListener('click', handlePrizeClick)
+document.getElementById('reset-btn').addEventListener('click', init)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -192,17 +193,10 @@ function playerTurn() {
 
 function calculateDamage(atk, opposingDef, crit) {
   let damage = atk
-  console.log(damage);
-
   let critRoll = Math.floor(Math.random() * 21)
   isCrit = critRoll <= crit ? true : false
   if (isCrit) damage *= 2
-  console.log(damage);
-
   damage *= (1 - (opposingDef * .05))
-  console.log(critRoll);
-  console.log(damage);
-  
   document.getElementsByClassName('dmg-dealt').textContent = damage
   console.log(document.getElementsByClassName('dmg-dealt').textContent);
   return Math.round(damage)
@@ -241,6 +235,7 @@ function handlePrizeClick(evt) {
   renderEquippedItems()
   initFight()
   prizes.innerHTML = null
+  // prizes.style.visibility = 'hidden'
 }
 
 function renderEquippedItems() {
@@ -299,7 +294,7 @@ function renderMessage() {
   } else if (battleCount === 5) {
     battleBoardHead.textContent = `FINAL BATTLE`
   } else if (winner && playerCurrentHP <= 0) {
-    battleBoardHead.textContent = `DEFEAT. TRY AGAIN?`
+    gameEnd()
     turn = null
   } else if (winner && enemyCurrentHP <= 0) {
     battleBoardHead.textContent = 'You Win!'
@@ -361,8 +356,16 @@ function disableClassButtons() {
 }
 
 function gameEnd() {
-  battleBoardHead.textContent = `VICTORY`
+  console.log('check');
+  if (playerCurrentHP > 0) {
+    battleBoardHead.textContent = `VICTORY`
+    console.log('check');
+  } else {
+    battleBoardHead.textContent = `DEFEAT. TRY AGAIN!`
+  }
+  console.log('check');
+  footer.innerHTML = `<button id="restart-btn">PLAY AGAIN</button>`
+  console.log('check');
   document.getElementById('player-hud').style.borderRight = 'none'
   document.getElementById('characters').style.visibility = 'hidden'
-  footer.textContent = null
 }
