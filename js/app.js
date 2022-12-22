@@ -18,7 +18,7 @@ class Class {
   }
 }
 
-const barbarian = new Class(80, 6, 5, 5, 20)
+const barbarian = new Class(80, 6, 5, 5, 2)
 const rogue = new Class(30, 5, 7, 3, 6)
 const sorceress = new Class(30, 10, 3, 2, 5)
 
@@ -35,7 +35,7 @@ class Enemy {
 
 
 
-const enemy1 = new Enemy ('IMP', 40, 4, 4, 3, 20)
+const enemy1 = new Enemy ('IMP', 40, 4, 4, 3, 1)
 const enemy2 = new Enemy ('LIZARD MAN', 50, 5, 5, 4, 2)
 const enemy3 = new Enemy ('OGRE', 60, 6, 6, 5, 3)
 const enemy4 = new Enemy ('LEVIATHAN', 70, 7, 7, 6, 3)
@@ -223,27 +223,23 @@ function enemyTurn() {
 
 function damageFlash(charFlash, dmg) {
   if (isCrit) {
+    charFlash.textContent = '-' + dmg
     charFlash.style.backgroundColor = 'red'
   } else {
-    charFlash.style.backgroundColor = 'green'
+    charFlash.style.backgroundColor = null
+    charFlash.textContent = '-' + dmg
   }
-  // charFlash.classList.add('animate')
-  charFlash.textContent = dmg
-  // charFlash.classList.remove('dmg-flash')
-  let cls = ['dmg-flash-out','dmg-flash-in']
+  // console.log('hunter yayyyyy');
   // charFlash.classList.add('dmg-flash-out')
+  // setTimeout(() => charFlash.classList.add('dmg-flash-in'), 2000)
+  // setTimeout(() => charFlash.classList.remove('dmg-flash-out'), 2000)
+
+
+  let cls = ['dmg-flash-out','dmg-flash-in']
   charFlash.classList.remove(...cls)
-  // charFlash.classList.toggle('visible')
-  charFlash.classList.remove('dmg-flash-out')
-  charFlash.classList.remove('dmg-flash-in')
+  charFlash.offsetHeight
   charFlash.classList.add('dmg-flash-out')
-  // charFlash.classList.toggle('dmg-flash-in'), charFlash.classList.toggle('dmg-flash-out')
-  // charFlash.classList.toggle('opacity', 1)
-  // setTimeout(() => (charFlash.classList.add('dmg-flash-in'), 1000))
-  // charFlash.classList.remove('dmg-flash-out')
   charFlash.classList.add('dmg-flash-in')
-  // charFlash.classList.remove()
-  // charFlash.classList.remove('dmg-flash-out')
 }
 
 function calculateDamage(atk, opposingDef, crit) {

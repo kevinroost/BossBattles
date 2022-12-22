@@ -167,28 +167,20 @@ button {
 #player-dmg {
   position: absolute;
   left: 15%;
-  top: 30%;
+  top: 25%;
   padding: 4px 8px;
+  font-size: 16px;
 }
 
 #enemy-dmg {
   position: absolute;
   right: 15%;
-  top: 30%;
+  top: 25%;
   padding: 4px 8px;
+  font-size: 16px;
 }
 
-/* .dmg-flash {
-  visibility: hidden;
-} */
-
-/* .animate {
-  visibility: visible;
-  opacity: 1;
-} */
-
 .dmg-flash-in {
-  /* transition: visibility 0s 2s; */
   visibility: hidden;
   opacity: 1;
 }
@@ -197,9 +189,6 @@ button {
   visibility: visible;
   transition-property: opacity;
   transition-duration: 2s, 1s;
-  /* transition: visibility 0s 2s; */
-  /* transition: opacity 2s;
-  visibility: hidden; */
   opacity: 0;
 }
 
