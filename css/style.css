@@ -182,13 +182,25 @@ button {
   visibility: hidden;
 } */
 
-.animate {
+/* .animate {
   visibility: visible;
+  opacity: 1;
+} */
+
+.dmg-flash-in {
+  /* transition: visibility 0s 2s; */
+  visibility: hidden;
+  opacity: 1;
 }
 
-.dmg-flash {
-  visibility: hidden;
-  transition: visibility 1s
+.dmg-flash-out {
+  visibility: visible;
+  transition-property: opacity;
+  transition-duration: 2s, 1s;
+  /* transition: visibility 0s 2s; */
+  /* transition: opacity 2s;
+  visibility: hidden; */
+  opacity: 0;
 }
 
 footer {

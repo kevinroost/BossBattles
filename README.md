@@ -5,7 +5,7 @@ SCREENSHOTS GO HERE
 
 Boss Battles is a text based battle simulator that pits players against 5 different enemies, gathering loot along the way. After the player chooses one of three classes, each with unique starting stats, they come face-to-face with their first opponent. Once defeated, the boss drops 3 pieces of equipment that the player will choose from. Each piece of equipment will boost certain stats upon pick-up, setting up the player for the next battle. Victory comes when all 5 bosses are defeated!
 
-## [__PLAY THE GAME HERE__](https://kevinroost-bossbattles.netlify.app/)
+## __[PLAY THE GAME HERE](https://kevinroost-bossbattles.netlify.app/)__
 
 ## __PLANNING MATERIALS__
 

@@ -227,11 +227,23 @@ function damageFlash(charFlash, dmg) {
   } else {
     charFlash.style.backgroundColor = 'green'
   }
+  // charFlash.classList.add('animate')
   charFlash.textContent = dmg
-  charFlash.classList.add('animate')
-  console.log(charFlash.classList);
-  // charFlash.classList.remove('animate')
-  setTimeout(() => (charFlash.classList.remove('animate')), 1500)
+  // charFlash.classList.remove('dmg-flash')
+  let cls = ['dmg-flash-out','dmg-flash-in']
+  // charFlash.classList.add('dmg-flash-out')
+  charFlash.classList.remove(...cls)
+  // charFlash.classList.toggle('visible')
+  charFlash.classList.remove('dmg-flash-out')
+  charFlash.classList.remove('dmg-flash-in')
+  charFlash.classList.add('dmg-flash-out')
+  // charFlash.classList.toggle('dmg-flash-in'), charFlash.classList.toggle('dmg-flash-out')
+  // charFlash.classList.toggle('opacity', 1)
+  // setTimeout(() => (charFlash.classList.add('dmg-flash-in'), 1000))
+  // charFlash.classList.remove('dmg-flash-out')
+  charFlash.classList.add('dmg-flash-in')
+  // charFlash.classList.remove()
+  // charFlash.classList.remove('dmg-flash-out')
 }
 
 function calculateDamage(atk, opposingDef, crit) {
