@@ -132,6 +132,7 @@ function init() {
   for (stat in statObj) {
     statObj[stat] = '?'
   }
+  enableClassButtons()
   render()
 }
 
@@ -357,6 +358,15 @@ function disableClassButtons() {
   for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
     document.getElementsByClassName("class")[i].style.border = '3px solid gray'
     document.getElementsByClassName("class")[i].style.cursor = 'default'
+  }
+}
+
+function enableClassButtons() {
+  allClasses.addEventListener('click', selectChar)
+  allClasses.style.color = 'black'
+  for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
+    document.getElementsByClassName("class")[i].style.border = '3px solid black'
+    document.getElementsByClassName("class")[i].style.cursor = 'pointer'
   }
 }
 
