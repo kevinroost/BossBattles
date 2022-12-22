@@ -124,6 +124,11 @@ init()
 
 function init() {
   classChosen = false
+  battleCount = 0
+  turn = null
+  winner = false
+  console.log(equippedList.textContent);
+  document.getElementsByClassName('character').innerHTML = null
   for (stat in statObj) {
     statObj[stat] = '?'
   }
@@ -139,6 +144,7 @@ function render() {
   renderMessage()
   if (classChosen) renderCharacters()
   renderTurnMessage()
+  // renderEquippedItems()
 }
 
 function initFight() {
@@ -229,8 +235,6 @@ function handlePrizeClick(evt) {
       possiblePrizes.push(pendingPrizes.splice(i, 1)[0])
     } else equippedItems.push(pendingPrizes.splice(i, 1)[0])
   }
-  console.log(equippedItems);
-  console.log(possiblePrizes);
   winner = false
   renderEquippedItems()
   initFight()
@@ -239,6 +243,7 @@ function handlePrizeClick(evt) {
 }
 
 function renderEquippedItems() {
+  console.log(equippedItems.length);
   equippedList.innerHTML = null
   equippedItems.forEach(item => {
     if (!(item.stat2)) {
@@ -359,13 +364,9 @@ function gameEnd() {
   console.log('check');
   if (playerCurrentHP > 0) {
     battleBoardHead.textContent = `VICTORY`
-    console.log('check');
   } else {
     battleBoardHead.textContent = `DEFEAT. TRY AGAIN!`
   }
-  console.log('check');
-  footer.innerHTML = `<button id="restart-btn">PLAY AGAIN</button>`
-  console.log('check');
   document.getElementById('player-hud').style.borderRight = 'none'
   document.getElementById('characters').style.visibility = 'hidden'
 }
