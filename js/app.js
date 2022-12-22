@@ -145,6 +145,7 @@ function init() {
   enableClassButtons()
   render()
   renderEquippedItems()
+  
   console.log(possiblePrizes);
 }
 
@@ -291,8 +292,8 @@ function handlePrizeClick(evt) {
 }
 
 function renderEquippedItems() {
-  console.log(equippedItems.length);
   equippedList.innerHTML = null
+  if (equippedItems.length === 0) equippedList.textContent = 'EMPTY'
   equippedItems.forEach(item => {
     if (!(item.stat2)) {
       equippedList.append(`${item.name}, ${item.stat}+${item.increment}`, document.createElement('p'))
@@ -305,8 +306,6 @@ function renderEquippedItems() {
 function updateStat(stat, inc, stat2, inc2) {
   statObj[stat] = statObj[stat] + inc
 }
-
-
 
 function renderCharacters () {
   document.getElementById('player-hud').innerHTML = 
