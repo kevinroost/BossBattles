@@ -33,11 +33,11 @@ class Enemy {
   }
 }
 
-const enemy1 = new Enemy ('enemy1', 40, 4, 4, 3, 1)
-const enemy2 = new Enemy ('enemy2', 50, 5, 5, 4, 2)
-const enemy3 = new Enemy ('enemy3', 60, 6, 6, 5, 3)
-const enemy4 = new Enemy ('enemy4', 70, 7, 7, 6, 3)
-const enemy5 = new Enemy ('enemy5', 80, 8, 8, 7, 4)
+const enemy1 = new Enemy ('IMP', 40, 4, 4, 3, 1)
+const enemy2 = new Enemy ('OGRE', 50, 5, 5, 4, 2)
+const enemy3 = new Enemy ('LEVIATHAN', 60, 6, 6, 5, 3)
+const enemy4 = new Enemy ('DRAGON', 70, 7, 7, 6, 3)
+const enemy5 = new Enemy ('YOUR EX', 80, 8, 8, 7, 4)
 
 const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
