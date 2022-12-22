@@ -79,7 +79,6 @@ section {
 }
 
 .character {
-  display: flex;
   flex-direction: column;
   width: 50%;
   justify-content: flex-start;
@@ -123,6 +122,16 @@ button {
   font-size: 20px;
   width: 175px;
   cursor: pointer;
+}
+
+#characters {
+  justify-content: space-between;
+  position: relative
+}
+
+#enemy-dmg {
+  position: absolute;
+  right: 0;
 }
 
 footer {

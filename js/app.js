@@ -18,7 +18,7 @@ class Class {
   }
 }
 
-const barbarian = new Class(80, 100, 5, 5, 2)
+const barbarian = new Class(80, 6, 5, 5, 2)
 const rogue = new Class(30, 5, 7, 3, 6)
 const sorceress = new Class(30, 10, 3, 2, 5)
 
@@ -176,16 +176,10 @@ function handleAtkClick () {
     return
   }
   setTimeout(() => enemyTurn(), 0)
-  //repeat above until hp <= 
-  //if winner, 
-  //announce winner
-  //turn = 0 and 
-  //return prize options
 }
 
 function playerTurn() {
   enemyCurrentHP -= calculateDamage(statObj.atk, enemy.def, statObj.crit)
-  // enemyCurrentHP = isCrit ? enemyCurrentHP - (statObj.atk * 2) : enemyCurrentHP - statObj.atk
   if (enemyCurrentHP <= 0) {
     winner = true
     turn = 0
@@ -207,6 +201,8 @@ function calculateDamage(atk, opposingDef, crit) {
   console.log(critRoll);
   console.log(damage);
   
+  document.getElementsByClassName('dmg-dealt').textContent = damage
+  console.log(document.getElementsByClassName('dmg-dealt').textContent);
   return Math.round(damage)
 }
 
@@ -243,9 +239,6 @@ function handlePrizeClick(evt) {
   renderEquippedItems()
   initFight()
   prizes.innerHTML = null
-  //boost applicable stats
-  //update inventory
-  //initFight
 }
 
 function renderEquippedItems() {
