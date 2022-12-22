@@ -139,9 +139,7 @@ function init() {
   document.getElementsByClassName('character').innerHTML = null
   for (stat in statObj) {
     statObj[stat] = '?'
-  }
-  // equippedItems.forEach (item => {
-  while (equippedItems.length > 0) {
+  }  while (equippedItems.length > 0) {
     possiblePrizes.push(equippedItems.splice(0, 1)[0])
   }
   enableClassButtons()
@@ -413,6 +411,7 @@ function enableClassButtons() {
 function gameEnd() {
   if (playerCurrentHP > 0) {
     battleBoardHead.textContent = `VICTORY`
+    document.body.style.background = 'linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red)'
   } else {
     battleBoardHead.textContent = `DEFEAT. TRY AGAIN!`
   }

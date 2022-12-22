@@ -8,6 +8,7 @@ Boss Battles is a text based battle simulator that pits players against 5 differ
 ## __[PLAY THE GAME HERE](https://kevinroost-bossbattles.netlify.app/)__
 
 ## __PLANNING MATERIALS__
+Since I initially planned out my project on a private Trello board, I copied the steps into [this](https://docs.google.com/document/d/1dwlSJvjfghr4bocWK8UAslhji3oxzZKQBtyaYomB0CQ/edit?usp=sharing) Google Doc.
 
 ## __TECHNOLOGIES USED__
 - ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -15,6 +16,10 @@ Boss Battles is a text based battle simulator that pits players against 5 differ
 - ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 - ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 
+
+## __ATTRIBUTIONS__
+- Rainbow Gradient: [StackOverflow](https://stackoverflow.com/questions/56418763/creating-the-perfect-rainbow-gradient-in-css)
+- Font: [Google Fonts](https://fonts.google.com/)
 
 
 ## __ICE BOX__
