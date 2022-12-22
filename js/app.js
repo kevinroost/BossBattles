@@ -141,12 +141,12 @@ function init() {
     statObj[stat] = '?'
   }
   equippedItems.forEach (item => {
-    possiblePrizes.push(equippedItems.splice(equippedItems.indexOf(item), 1))
+    possiblePrizes.push(equippedItems.splice(equippedItems.indexOf(item), 1)[0])
   })
   enableClassButtons()
   render()
   renderEquippedItems()
-  console.log(turn);
+  console.log(possiblePrizes);
 }
 
 function render() {
@@ -410,7 +410,6 @@ function enableClassButtons() {
 }
 
 function gameEnd() {
-  console.log('check');
   if (playerCurrentHP > 0) {
     battleBoardHead.textContent = `VICTORY`
   } else {
@@ -418,5 +417,5 @@ function gameEnd() {
   }
   turn = null
   renderTurnMessage()
-  document.getElementById('atk-btn').style.display = 'none'
+  document.getElementById('atk-btn').style.visibility = 'hidden'
 }
