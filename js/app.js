@@ -18,7 +18,7 @@ class Class {
   }
 }
 
-const barbarian = new Class(80, 6, 5, 5, 2)
+const barbarian = new Class(80, 6, 5, 5, 20)
 const rogue = new Class(30, 5, 7, 3, 6)
 const sorceress = new Class(30, 10, 3, 2, 5)
 
@@ -35,11 +35,11 @@ class Enemy {
 
 
 
-const enemy1 = new Enemy ('IMP', 40, 4, 4, 3, 1)
-const enemy2 = new Enemy ('OGRE', 50, 5, 5, 4, 2)
-const enemy3 = new Enemy ('LEVIATHAN', 60, 6, 6, 5, 3)
-const enemy4 = new Enemy ('DRAGON', 70, 7, 7, 6, 3)
-const enemy5 = new Enemy ('YOUR EX', 80, 8, 8, 7, 4)
+const enemy1 = new Enemy ('IMP', 40, 4, 4, 3, 20)
+const enemy2 = new Enemy ('LIZARD MAN', 50, 5, 5, 4, 2)
+const enemy3 = new Enemy ('OGRE', 60, 6, 6, 5, 3)
+const enemy4 = new Enemy ('LEVIATHAN', 70, 7, 7, 6, 3)
+const enemy5 = new Enemy ('DRAGON', 80, 8, 8, 7, 4)
 
 const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
@@ -107,6 +107,9 @@ const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
 const prizes = document.querySelector('#prizes')
 const equippedList = document.querySelector('#item-list')
+const enemyDmgFlash = document.querySelector('#enemy-dmg')
+const playerDmgFlash = document.querySelector('#player-dmg')
+const dmgFlash = document.querySelector('.dmg-flash')
 
 const pendingPrizes = []
 
@@ -191,17 +194,44 @@ function handleAtkClick () {
     gameEnd()
     return
   }
-  setTimeout(() => enemyTurn(), 0)
+  setTimeout(() => enemyTurn(), 1000)
 }
 
 function playerTurn() {
-  enemyCurrentHP -= calculateDamage(statObj.atk, enemy.def, statObj.crit)
+  let damage = calculateDamage(statObj.atk, enemy.def, statObj.crit)
+  enemyCurrentHP -= damage
+  damageFlash(enemyDmgFlash, damage)
   if (enemyCurrentHP <= 0) {
     winner = true
     turn = 0
   }
   turn *= -1
   render()
+}
+
+function enemyTurn() {
+  let damage = calculateDamage(enemy.atk, statObj.def, enemy.crit)
+  playerCurrentHP -= damage
+  damageFlash(playerDmgFlash, damage)
+  if (playerCurrentHP <= 0) {
+    winner = true
+    turn = 0
+  }
+  turn *= -1
+  render()
+}
+
+function damageFlash(charFlash, dmg) {
+  if (isCrit) {
+    charFlash.style.backgroundColor = 'red'
+  } else {
+    charFlash.style.backgroundColor = 'green'
+  }
+  charFlash.textContent = dmg
+  charFlash.classList.add('animate')
+  console.log(charFlash.classList);
+  // charFlash.classList.remove('animate')
+  setTimeout(() => (charFlash.classList.remove('animate')), 1500)
 }
 
 function calculateDamage(atk, opposingDef, crit) {
@@ -265,15 +295,6 @@ function updateStat(stat, inc, stat2, inc2) {
   statObj[stat] = statObj[stat] + inc
 }
 
-function enemyTurn() {
-  playerCurrentHP -= calculateDamage(enemy.atk, statObj.def, enemy.crit)
-  if (playerCurrentHP <= 0) {
-    winner = true
-    turn = 0
-  }
-  turn *= -1
-  render()
-}
 
 
 function renderCharacters () {
@@ -383,6 +404,4 @@ function gameEnd() {
   } else {
     battleBoardHead.textContent = `DEFEAT. TRY AGAIN!`
   }
-  document.getElementById('player-hud').style.borderRight = 'none'
-  document.getElementById('characters').style.visibility = 'hidden'
 }
