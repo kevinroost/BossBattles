@@ -18,9 +18,9 @@ class Class {
   }
 }
 
-const barbarian = new Class(80, 5, 5, 5, 2)
-const rogue = new Class(30, 5, 7, 3, 6)
-const sorceress = new Class(30, 10, 3, 2, 5)
+const barbarian = new Class(80, 6, 5, 7, 2)
+const rogue = new Class(30, 5, 7, 3, 9)
+const sorceress = new Class(30, 13, 3, 2, 5)
 
 class Enemy {
   constructor (name, maxHP, atk, spd, def, crit) {
