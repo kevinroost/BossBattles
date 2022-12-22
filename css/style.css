@@ -77,6 +77,11 @@ section {
   align-self: center;
 }
 
+.stat > p,
+#item-list {
+  font-size: 20px;
+}
+
 .stat {
   display: flex;
   justify-content: space-between;
