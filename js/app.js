@@ -127,6 +127,11 @@ function init() {
   battleCount = 0
   turn = null
   winner = false
+  currentClass = null
+  for (statKey in statObj) {
+    statObj.statKey = null
+  } 
+  document.getElementById('characters').style.visibility = 'hidden'
   console.log(equippedList.textContent);
   document.getElementsByClassName('character').innerHTML = null
   for (stat in statObj) {
@@ -134,6 +139,7 @@ function init() {
   }
   enableClassButtons()
   render()
+  console.log(turn);
 }
 
 function render() {
