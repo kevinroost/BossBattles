@@ -25,6 +25,7 @@ Since I initially planned out my project on a private Trello board, I copied the
 
 ## __ICE BOX__
 
+- [ ] Fix color scheme
 - [ ] Add additional classes
 - [ ] Add sound effects
 - [ ] Refactor for smaller screens
