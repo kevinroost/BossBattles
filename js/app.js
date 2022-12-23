@@ -18,7 +18,7 @@ class Class {
   }
 }
 
-const barbarian = new Class(60, 7, 5, 7, 2)
+const barbarian = new Class(60, 100, 5, 7, 2)
 const rogue = new Class(30, 5, 7, 3, 9)
 const sorceress = new Class(30, 13, 3, 2, 5)
 
@@ -144,7 +144,8 @@ function init() {
   enableClassButtons()
   render()
   renderEquippedItems()
-  document.body.style.background = null
+  document.body.style.background = 'url(https://img.freepik.com/free-vector/detailed-jungle-background_23-2148953379.jpg?w=1480&t=st=1671756390~exp=1671756990~hmac=80aa8202cd6c9e5d6b87e93d82989b3c23bcd6db46bbee01d5b0c2ff1800e821)'
+  document.body.style.backgroundPosition = 'center';
   document.querySelector('.pyro').style.visibility = 'hidden'
 }
 
@@ -391,6 +392,7 @@ function selectChar(evt) {
 function disableClassButtons() {
   allClasses.removeEventListener('click', selectChar)
   allClasses.style.color = 'gray'
+  allClasses.style.background = null
   for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
     document.getElementsByClassName("class")[i].style.border = '3px solid gray'
     document.getElementsByClassName("class")[i].style.cursor = 'default'
@@ -416,5 +418,6 @@ function gameEnd() {
   }
   turn = null
   renderTurnMessage()
+  renderCharacters()
   document.getElementById('atk-btn').style.visibility = 'hidden'
 }

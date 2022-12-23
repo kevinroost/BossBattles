@@ -20,6 +20,7 @@ Since I initially planned out my project on a private Trello board, I copied the
 ## __ATTRIBUTIONS__
 - Rainbow Gradient: [StackOverflow](https://stackoverflow.com/questions/56418763/creating-the-perfect-rainbow-gradient-in-css)
 - Font: [Google Fonts](https://fonts.google.com/)
+- Fireworks Animation: [Eddie Lin](https://jsfiddle.net/user/elin/fiddles/)
 
 
 ## __ICE BOX__
