@@ -102,6 +102,7 @@ let isCrit
 /*------------------------ Cached Element References ------------------------*/
 
 const allClasses = document.querySelector('#classes')
+const eachClass = document.querySelector('.class')
 const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
 const prizes = document.querySelector('#prizes')
@@ -109,6 +110,7 @@ const equippedList = document.querySelector('#item-list')
 const enemyDmgFlash = document.querySelector('#enemy-dmg')
 const playerDmgFlash = document.querySelector('#player-dmg')
 const dmgFlash = document.querySelector('.dmg-flash')
+const statsAndItems = document.querySelector('.list')
 
 const pendingPrizes = []
 
@@ -392,19 +394,34 @@ function selectChar(evt) {
 function disableClassButtons() {
   allClasses.removeEventListener('click', selectChar)
   allClasses.style.color = 'gray'
-  allClasses.style.background = null
+  document.querySelector('#stats').style.color = 'green'
+  document.querySelector('#items').style.color = 'green'
+  document.querySelector('#stats').style.backgroundColor = 'black'
+  document.querySelector('#items').style.backgroundColor = 'black'
+  document.querySelector('#stats').style.border = '2px solid black'
+  document.querySelector('#items').style.border = '2px solid black'
+  
   for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
-    document.getElementsByClassName("class")[i].style.border = '3px solid gray'
-    document.getElementsByClassName("class")[i].style.cursor = 'default'
+    document.getElementsByClassName('class')[i].style.border = '3px solid gray'
+    document.getElementsByClassName('class')[i].style.cursor = 'default'
+    document.getElementsByClassName('class')[i].style.backgroundColor = null
   }
 }
 
 function enableClassButtons() {
   allClasses.addEventListener('click', selectChar)
-  allClasses.style.color = 'black'
+  allClasses.style.color = 'green'
+  document.querySelector('#stats').style.color = 'grey'
+  document.querySelector('#items').style.color = 'grey'
+  document.querySelector('#stats').style.backgroundColor = null
+  document.querySelector('#items').style.backgroundColor = null
+  eachClass.style.backgroundColor = 'black'
+  document.querySelector('#stats').style.border = '2px solid grey'
+  document.querySelector('#items').style.border = '2px solid grey'
   for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
-    document.getElementsByClassName("class")[i].style.border = '3px solid black'
+    document.getElementsByClassName("class")[i].style.border = '3px solid green'
     document.getElementsByClassName("class")[i].style.cursor = 'pointer'
+    document.getElementsByClassName("class")[i].style.backgroundColor = 'black'
   }
 }
 
