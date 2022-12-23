@@ -43,7 +43,7 @@ section {
 #reset-btn {
   position: absolute;
   align-self: center;
-  right: 64px;
+  right: 20%;
   padding: 4px 8px;
   font-size: 12px;
   background-color: darkgreen;

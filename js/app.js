@@ -281,6 +281,10 @@ function handlePrizeClick(evt) {
   prizes.innerHTML = null
 }
 
+function updateStat(stat, inc, stat2, inc2) {
+  statObj[stat] = statObj[stat] + inc
+}
+
 function renderEquippedItems() {
   equippedList.innerHTML = null
   if (equippedItems.length === 0) equippedList.textContent = 'EMPTY'
@@ -291,10 +295,6 @@ function renderEquippedItems() {
       equippedList.append(`${item.name}, ${item.stat}+${item.increment} ${item.stat2}+${item.increment2}`, document.createElement('p'))
     }
   })
-}
-
-function updateStat(stat, inc, stat2, inc2) {
-  statObj[stat] = statObj[stat] + inc
 }
 
 function renderCharacters () {
