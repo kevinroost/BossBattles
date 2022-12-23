@@ -130,6 +130,10 @@ section {
   border-radius: 0;
 }
 
+h3 {
+  font-size: 24px;
+}
+
 button {
   background-color: inherit;
   border: 1px solid black;
