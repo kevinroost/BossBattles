@@ -33,15 +33,14 @@ class Enemy {
   }
 }
 
+const enemies = [
+  new Enemy ('IMP', 40, 4, 4, 3, 1),
+  new Enemy ('LIZARD MAN', 50, 5, 5, 4, 2),
+  new Enemy ('OGRE', 60, 6, 6, 5, 3),
+  new Enemy ('LEVIATHAN', 70, 7, 7, 6, 3),
+  new Enemy ('DRAGON', 80, 8, 8, 7, 4),
+]
 
-
-const enemy1 = new Enemy ('IMP', 40, 4, 4, 3, 1)
-const enemy2 = new Enemy ('LIZARD MAN', 50, 5, 5, 4, 2)
-const enemy3 = new Enemy ('OGRE', 60, 6, 6, 5, 3)
-const enemy4 = new Enemy ('LEVIATHAN', 70, 7, 7, 6, 3)
-const enemy5 = new Enemy ('DRAGON', 80, 8, 8, 7, 4)
-
-const enemies = [enemy1, enemy2, enemy3, enemy4, enemy5]
 
 class Prize {
   constructor (name, stat, increment, stat2, increment2) {
@@ -145,8 +144,7 @@ function init() {
   enableClassButtons()
   render()
   renderEquippedItems()
-  
-  console.log(possiblePrizes);
+  document.body.style.background = null
 }
 
 function render() {
