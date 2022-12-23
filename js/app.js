@@ -136,7 +136,6 @@ function init() {
     statObj.statKey = null
   } 
   document.getElementById('characters').style.visibility = 'hidden'
-  console.log(equippedList.textContent);
   document.getElementsByClassName('character').innerHTML = null
   for (stat in statObj) {
     statObj[stat] = '?'
@@ -160,14 +159,12 @@ function render() {
   renderMessage()
   if (classChosen) renderCharacters()
   renderTurnMessage()
-  // renderEquippedItems()
 }
 
 function initFight() {
   findEnemy()
   playerCurrentHP = statObj.maxHP
   battleCount = battleCount + 1
-  console.log(enemy);
   checkSpeed()
   render()
 }
@@ -235,12 +232,6 @@ function damageFlash(charFlash, dmg) {
     charFlash.style.backgroundColor = null
     charFlash.textContent = '-' + dmg
   }
-  // console.log('hunter yayyyyy');
-  // charFlash.classList.add('dmg-flash-out')
-  // setTimeout(() => charFlash.classList.add('dmg-flash-in'), 2000)
-  // setTimeout(() => charFlash.classList.remove('dmg-flash-out'), 2000)
-
-
   let cls = ['dmg-flash-out','dmg-flash-in']
   charFlash.classList.remove(...cls)
   charFlash.offsetHeight
@@ -255,7 +246,6 @@ function calculateDamage(atk, opposingDef, crit) {
   if (isCrit) damage *= 2
   damage *= (1 - (opposingDef * .05))
   document.getElementsByClassName('dmg-dealt').textContent = damage
-  console.log(document.getElementsByClassName('dmg-dealt').textContent);
   return Math.round(damage)
 }
 
@@ -280,7 +270,6 @@ function handlePrizeClick(evt) {
   if (evt.target.className != 'loot-option') return
   let prizeIndex = evt.target.id
   updateStat(pendingPrizes[prizeIndex].stat, pendingPrizes[prizeIndex].increment, pendingPrizes[prizeIndex].stat2, pendingPrizes[prizeIndex].increment2)
-  console.log(prizeIndex);
   for (let i = pendingPrizes.length - 1; i >=0 ; i--) {
     if (i != prizeIndex) {
       possiblePrizes.push(pendingPrizes.splice(i, 1)[0])
@@ -290,7 +279,6 @@ function handlePrizeClick(evt) {
   renderEquippedItems()
   initFight()
   prizes.innerHTML = null
-  // prizes.style.visibility = 'hidden'
 }
 
 function renderEquippedItems() {
@@ -386,7 +374,6 @@ function selectChar(evt) {
       break
   }
   playerCurrentHP = statObj.maxHP
-  console.log(statObj);
   disableClassButtons()
   initFight()
 }
