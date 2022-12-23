@@ -284,6 +284,8 @@ function handlePrizeClick(evt) {
 
 function updateStat(stat, inc, stat2, inc2) {
   statObj[stat] = statObj[stat] + inc
+  statObj[stat2] = statObj[stat2] + inc2
+
 }
 
 function renderEquippedItems() {
