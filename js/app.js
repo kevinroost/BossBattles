@@ -255,7 +255,7 @@ function renderPrizes() {
   pendingPrizes.push(possiblePrizes.splice([Math.floor(Math.random() * possiblePrizes.length)], 1)[0])
   document.getElementById('prizes').innerHTML = `<p class="loot-option" id="0"></p><p class="loot-option" id="1"></p><p class="loot-option" id="2"></p>`
   for (let i = 0; i < 3; i++) {
-    id = `${i}`
+    id = i
     if (!(pendingPrizes[i].stat2)) {
       document.getElementById(id).innerHTML = pendingPrizes[i].name + '<br>' + pendingPrizes[i].stat + ' +' + pendingPrizes[i].increment
     } else if (pendingPrizes[i].stat2) {
@@ -385,8 +385,8 @@ function disableClassButtons() {
   document.querySelector('#items').style.color = 'green'
   document.querySelector('#stats').style.backgroundColor = 'black'
   document.querySelector('#items').style.backgroundColor = 'black'
-  document.querySelector('#stats').style.border = '2px solid black'
-  document.querySelector('#items').style.border = '2px solid black'
+  document.querySelector('#stats').style.border = '2px solid green'
+  document.querySelector('#items').style.border = '2px solid green'
   
   for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
     document.getElementsByClassName('class')[i].style.border = '3px solid gray'
