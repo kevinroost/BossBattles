@@ -18,7 +18,7 @@ class Class {
   }
 }
 
-const barbarian = new Class(60, 100, 5, 7, 2)
+const barbarian = new Class(60, 7, 5, 7, 2)
 const rogue = new Class(30, 5, 7, 3, 9)
 const sorceress = new Class(30, 13, 3, 2, 5)
 
