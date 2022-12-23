@@ -26,6 +26,7 @@ Since I initially planned out my project on a private Trello board, I copied the
 - Font: [Google Fonts](https://fonts.google.com/)
 - Fireworks Animation: [Eddie Lin](https://jsfiddle.net/user/elin/fiddles/)
 - Background Picture: [FreePik.com](https://www.freepik.com/free-photos-vectors/jungle-background)
+- Flavicon: [Twitter - @BBART](https://twitter.com/bbpac)
 
 
 ## __ICE BOX__
@@ -37,3 +38,4 @@ Since I initially planned out my project on a private Trello board, I copied the
 - [ ] Graphics for each enemy
 - [ ] Add another attack type
 - [ ] Refine selectors (class v id)
+- [ ] Button animation
