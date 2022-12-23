@@ -142,6 +142,7 @@ function init() {
   }  while (equippedItems.length > 0) {
     possiblePrizes.push(equippedItems.splice(0, 1)[0])
   }
+  prizes.innerHTML = null
   enableClassButtons()
   render()
   renderEquippedItems()
