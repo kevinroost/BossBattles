@@ -145,6 +145,7 @@ function init() {
   render()
   renderEquippedItems()
   document.body.style.background = null
+  document.querySelector('.pyro').style.visibility = 'hidden'
 }
 
 function render() {
@@ -409,6 +410,7 @@ function gameEnd() {
   if (playerCurrentHP > 0) {
     battleBoardHead.textContent = `VICTORY`
     document.body.style.background = 'linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red)'
+    document.querySelector('.pyro').style.visibility = 'visible'
   } else {
     battleBoardHead.textContent = `DEFEAT. TRY AGAIN!`
   }
