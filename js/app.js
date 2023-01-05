@@ -102,7 +102,7 @@ let isCrit
 /*------------------------ Cached Element References ------------------------*/
 
 const allClasses = document.querySelector('#classes')
-const eachClass = document.querySelector('.class')
+const eachClass = document.querySelectorAll('.class')
 const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
 const prizes = document.querySelector('#prizes')
@@ -110,7 +110,8 @@ const equippedList = document.querySelector('#item-list')
 const enemyDmgFlash = document.querySelector('#enemy-dmg')
 const playerDmgFlash = document.querySelector('#player-dmg')
 const dmgFlash = document.querySelector('.dmg-flash')
-const statsAndItems = document.querySelector('.list')
+// const statsAndItems = document.querySelector('.list')
+const statsAndItems = document.querySelectorAll('.list')
 
 const pendingPrizes = []
 
@@ -354,7 +355,7 @@ function checkSpeed() {
 }
 
 function selectChar(evt) {
-  if (evt.target.className != 'class') return
+  if (!evt.target.classList.contains('class')) return
   classChosen = true
   switch(evt.target.id) {
     case 'bar':
@@ -377,42 +378,25 @@ function selectChar(evt) {
       break
   }
   playerCurrentHP = statObj.maxHP
+  console.log('enabled');
   disableClassButtons()
   initFight()
 }
 
 function disableClassButtons() {
   allClasses.removeEventListener('click', selectChar)
-  allClasses.style.color = 'gray'
-  document.querySelector('#stats').style.color = 'green'
-  document.querySelector('#items').style.color = 'green'
-  document.querySelector('#stats').style.backgroundColor = 'black'
-  document.querySelector('#items').style.backgroundColor = 'black'
-  document.querySelector('#stats').style.border = '2px solid green'
-  document.querySelector('#items').style.border = '2px solid green'
-  
-  for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
-    document.getElementsByClassName('class')[i].style.border = '3px solid gray'
-    document.getElementsByClassName('class')[i].style.cursor = 'default'
-    document.getElementsByClassName('class')[i].style.backgroundColor = null
-  }
+  eachClass.forEach(i => {i.classList.add('disabled')})
+  eachClass.forEach(i => {i.classList.remove('enabled')})
+  statsAndItems.forEach(i => {i.classList.remove('disabled')})
+  statsAndItems.forEach(i => {i.classList.add('enabled')})
 }
 
 function enableClassButtons() {
   allClasses.addEventListener('click', selectChar)
-  allClasses.style.color = 'green'
-  document.querySelector('#stats').style.color = 'grey'
-  document.querySelector('#items').style.color = 'grey'
-  document.querySelector('#stats').style.backgroundColor = null
-  document.querySelector('#items').style.backgroundColor = null
-  eachClass.style.backgroundColor = 'black'
-  document.querySelector('#stats').style.border = '2px solid grey'
-  document.querySelector('#items').style.border = '2px solid grey'
-  for (let i = 0; i < document.getElementsByClassName("class").length; i++) {
-    document.getElementsByClassName("class")[i].style.border = '3px solid green'
-    document.getElementsByClassName("class")[i].style.cursor = 'pointer'
-    document.getElementsByClassName("class")[i].style.backgroundColor = 'black'
-  }
+  eachClass.forEach(i => {i.classList.remove('disabled')})
+  eachClass.forEach(i => {i.classList.add('enabled')})
+  statsAndItems.forEach(i => {i.classList.add('disabled')})
+  statsAndItems.forEach(i => {i.classList.remove('enabled')})
 }
 
 function gameEnd() {

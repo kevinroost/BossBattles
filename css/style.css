@@ -18,7 +18,7 @@ body {
   background-position: center;
   padding: 32px;
   height: 100%;
-  color: black;
+  /* color: black; */
 }
 
 section {
@@ -93,6 +93,22 @@ section {
   width: 275px;
   align-self: center;
   color: gray
+}
+
+.enabled {
+  background-color: black;
+  border: 2px solid green;
+  color: green;
+}
+
+.enabled * {
+  color: green;
+}
+
+.disabled {
+  color: grey;
+  background-color: transparent;
+  border: 2px solid grey;
 }
 
 .stat > p,
