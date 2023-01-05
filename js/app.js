@@ -133,21 +133,21 @@ function init() {
   turn = null
   winner = false
   currentClass = null
+  prizes.innerHTML = null
   for (statKey in statObj) {
     statObj.statKey = null
   } 
   document.getElementById('characters').style.visibility = 'hidden'
-  document.getElementsByClassName('character').innerHTML = null
   for (stat in statObj) {
     statObj[stat] = '?'
-  }  while (equippedItems.length > 0) {
+  }  
+  while (equippedItems.length > 0) {
     possiblePrizes.push(equippedItems.splice(0, 1)[0])
   }
-  prizes.innerHTML = null
   enableClassButtons()
   render()
   renderEquippedItems()
-  document.body.style.background = 'url(https://img.freepik.com/free-vector/detailed-jungle-background_23-2148953379.jpg?w=1480&t=st=1671756390~exp=1671756990~hmac=80aa8202cd6c9e5d6b87e93d82989b3c23bcd6db46bbee01d5b0c2ff1800e821)'
+  document.body.style.backgroundImage = 'linear-gradient(black 5%, darkgreen 30%, green 70%, lightgreen 90%)'
   document.body.style.backgroundPosition = 'center';
   document.querySelector('.pyro').style.visibility = 'hidden'
 }
