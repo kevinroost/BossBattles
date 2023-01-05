@@ -94,6 +94,7 @@ let playerCurrentHP
 let enemyCurrentHP
 let winner = false
 let isCrit
+let cancel = true
 
 
 
@@ -101,7 +102,7 @@ let isCrit
 
 /*------------------------ Cached Element References ------------------------*/
 
-const allClasses = document.querySelector('#classes')
+// const allClasses = document.querySelector('#classes')
 const eachClass = document.querySelectorAll('.class')
 const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
@@ -110,7 +111,6 @@ const equippedList = document.querySelector('#item-list')
 const enemyDmgFlash = document.querySelector('#enemy-dmg')
 const playerDmgFlash = document.querySelector('#player-dmg')
 const dmgFlash = document.querySelector('.dmg-flash')
-// const statsAndItems = document.querySelector('.list')
 const statsAndItems = document.querySelectorAll('.list')
 
 const pendingPrizes = []
@@ -118,7 +118,6 @@ const pendingPrizes = []
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-allClasses.addEventListener('click', selectChar)
 prizes.addEventListener('click', handlePrizeClick)
 document.getElementById('reset-btn').addEventListener('click', init)
 
@@ -134,6 +133,7 @@ function init() {
   winner = false
   currentClass = null
   prizes.innerHTML = null
+  cancel = true
   for (statKey in statObj) {
     statObj.statKey = null
   } 
@@ -164,6 +164,7 @@ function render() {
 }
 
 function initFight() {
+  cancel = false
   findEnemy()
   playerCurrentHP = statObj.maxHP
   battleCount = battleCount + 1
@@ -215,6 +216,7 @@ function playerTurn() {
 }
 
 function enemyTurn() {
+  if (cancel) return
   let damage = calculateDamage(enemy.atk, statObj.def, enemy.crit)
   playerCurrentHP -= damage
   damageFlash(playerDmgFlash, damage)
@@ -227,6 +229,7 @@ function enemyTurn() {
 }
 
 function damageFlash(charFlash, dmg) {
+  cancel = false
   if (isCrit) {
     charFlash.textContent = '-' + dmg
     charFlash.style.backgroundColor = 'red'
@@ -355,7 +358,6 @@ function checkSpeed() {
 }
 
 function selectChar(evt) {
-  if (!evt.target.classList.contains('class')) return
   classChosen = true
   switch(evt.target.id) {
     case 'bar':
@@ -384,7 +386,7 @@ function selectChar(evt) {
 }
 
 function disableClassButtons() {
-  allClasses.removeEventListener('click', selectChar)
+  eachClass.forEach(button => {button.removeEventListener('click', selectChar)})
   eachClass.forEach(i => {i.classList.add('disabled')})
   eachClass.forEach(i => {i.classList.remove('enabled')})
   statsAndItems.forEach(i => {i.classList.remove('disabled')})
@@ -392,7 +394,7 @@ function disableClassButtons() {
 }
 
 function enableClassButtons() {
-  allClasses.addEventListener('click', selectChar)
+  eachClass.forEach(button => {button.addEventListener('click', selectChar)})
   eachClass.forEach(i => {i.classList.remove('disabled')})
   eachClass.forEach(i => {i.classList.add('enabled')})
   statsAndItems.forEach(i => {i.classList.add('disabled')})
