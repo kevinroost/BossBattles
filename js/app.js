@@ -407,11 +407,9 @@ function gameEnd() {
     document.querySelector('.pyro').style.visibility = 'visible'
   } else {
     battleBoardHead.textContent = `DEFEAT. TRY AGAIN!`
-    
   }
   turn = null
   renderTurnMessage()
   renderCharacters()
   document.getElementById('atk-btn').style.visibility = 'hidden'
-  console.log('end');
 }
