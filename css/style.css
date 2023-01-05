@@ -18,7 +18,7 @@ body {
   background-position: center;
   padding: 32px;
   height: 100%;
-  /* color: black; */
+  cursor: default;
 }
 
 section {
@@ -109,6 +109,7 @@ section {
   color: grey;
   background-color: transparent;
   border: 2px solid grey;
+  cursor: default;
 }
 
 .stat > p,
