@@ -102,7 +102,6 @@ let cancel = true
 
 /*------------------------ Cached Element References ------------------------*/
 
-// const allClasses = document.querySelector('#classes')
 const eachClass = document.querySelectorAll('.class')
 const battleBoardHead = document.querySelector('#board-header')
 const footer = document.querySelector('footer')
@@ -267,7 +266,7 @@ function renderPrizes() {
       document.getElementById(id).innerHTML = pendingPrizes[i].name + '<br>' + pendingPrizes[i].stat + " +" + pendingPrizes[i].increment + " " + pendingPrizes[i].stat2 + ' +' + pendingPrizes[i].increment2
     }
   }
-  document.getElementById('player-hud').style.borderRight = 'none'
+  // document.getElementById('player-hud').style.borderRight = 'none'
   document.getElementById('characters').style.visibility = 'hidden'
 }
 
@@ -317,7 +316,6 @@ function renderCharacters () {
   document.getElementById('enemy-name').textContent = enemy.name
   document.getElementById('enemy-HP').textContent = enemyCurrentHP
   document.getElementById('characters').style.visibility = 'visible'
-  document.getElementById('player-hud').style.borderRight = '1px solid black'
 }
 
 function renderStats() {

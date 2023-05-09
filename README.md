@@ -38,7 +38,7 @@ Since I initially planned out my project on a private Trello board, I copied the
 - [ ] Refactor for smaller screens
 - [ ] Graphics for each enemy
 - [ ] Add another attack type
-- [ ] Refine selectors for easy styling
+- [x] Refine selectors for easy styling
 - [ ] Button animation
 - [ ] Add probability for each item
-- [ ] New Background
+- [x] New Background
