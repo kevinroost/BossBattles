@@ -83,6 +83,7 @@ section {
   justify-content: space-between;
   width: 900px;
   border: 2px solid black;
+  position: relative;
 }
 
 #battle-hud > div {
@@ -177,13 +178,13 @@ button {
   gap: 16px;
 }
 
-#prizes p {
+.loot-option {
   border: 1px solid black;
   height: min-content;
   padding: 16px;
   background-color: darkgreen;
   font-size: 20px;
-  width: 15%;
+  width: max-content;
   cursor: pointer;
 }
 
@@ -271,7 +272,11 @@ footer {
   }
   #reset-btn {
     right: 5vw;
-
+  }
+  #prizes {
+    flex-direction: column;
+    align-items: center;
+    top: 20%;
   }
 }
 
